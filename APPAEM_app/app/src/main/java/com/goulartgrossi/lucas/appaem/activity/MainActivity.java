@@ -25,10 +25,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     // tags used to attach the fragments
     public static final String TAG_IMLIST = "List Induction Machines";
-    private static final String TAG_IMADD = "Add new Induction Machine";
-    private static final String TAG_ABOUT = "About Us";
-    private static final String TAG_FEEDBACK = "Feedback";
-    private static final String TAG_SETTINGS = "Settings";
+    public static final String TAG_IMADD = "Add new Induction Machine";
+    public static final String TAG_ABOUT = "About Us";
+    public static final String TAG_FEEDBACK = "Feedback";
+    public static final String TAG_SETTINGS = "Settings";
+    public static final String TAG_IMDETAIL = "Detail Induction Machine";
     public static String CURRENT_TAG = TAG_IMLIST;
 
     @Override
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabAdd);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

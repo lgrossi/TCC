@@ -18,9 +18,21 @@ public class LayoutManager {
         activity.setTitle(tag);
 
         if (tag == MainActivity.TAG_IMLIST) {
-            setFABVisibility(View.VISIBLE, activity);
+            setFABVisibility(View.VISIBLE, activity, R.id.fabAdd);
+            setFABVisibility(View.INVISIBLE, activity, R.id.fabFeedback);
+            setFABVisibility(View.INVISIBLE, activity, R.id.fabMore);
+        } else if (tag == MainActivity.TAG_ABOUT) {
+            setFABVisibility(View.INVISIBLE, activity, R.id.fabAdd);
+            setFABVisibility(View.VISIBLE, activity, R.id.fabFeedback);
+            setFABVisibility(View.INVISIBLE, activity, R.id.fabMore);
+        } else if (tag == MainActivity.TAG_IMDETAIL) {
+            setFABVisibility(View.INVISIBLE, activity, R.id.fabAdd);
+            setFABVisibility(View.INVISIBLE, activity, R.id.fabFeedback);
+            setFABVisibility(View.VISIBLE, activity, R.id.fabMore);
         } else {
-            setFABVisibility(View.INVISIBLE, activity);
+            setFABVisibility(View.INVISIBLE, activity, R.id.fabAdd);
+            setFABVisibility(View.INVISIBLE, activity, R.id.fabFeedback);
+            setFABVisibility(View.INVISIBLE, activity, R.id.fabMore);
         }
 
         FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
@@ -31,7 +43,7 @@ public class LayoutManager {
         drawer.closeDrawers();
     }
 
-    private static void setFABVisibility (int visibility, FragmentActivity activity) {
-        activity.findViewById(R.id.fab).setVisibility(visibility);
+    private static void setFABVisibility (int visibility, FragmentActivity activity, int id) {
+        activity.findViewById(id).setVisibility(visibility);
     }
 }

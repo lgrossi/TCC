@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import com.goulartgrossi.lucas.appaem.R;
+import com.goulartgrossi.lucas.appaem.activity.MainActivity;
 import com.goulartgrossi.lucas.appaem.other.InductionMachineDao;
 import com.goulartgrossi.lucas.appaem.other.LayoutManager;
 
@@ -61,6 +62,6 @@ public class IMListFragment extends ListFragment implements OnItemClickListener 
 
         //new InductionMachineDao(getActivity()).deleteInductionMachine(imList.get(position));
 
-        LayoutManager.changeFragment(IMDetailFragment.newInstance(a), "Induction Motor Detail", getActivity());
+        LayoutManager.changeFragment(IMDetailFragment.newInstance(a), MainActivity.TAG_IMDETAIL, getActivity());
     }
 }

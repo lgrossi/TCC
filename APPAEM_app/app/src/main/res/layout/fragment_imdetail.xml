@@ -29,19 +29,20 @@
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="35px"
+            android:layout_marginLeft="50px"
             android:layout_marginTop="35px"
             android:textColor="@android:color/black"
-            android:textSize="9pt"
+            android:textSize="8pt"
             android:text="General Info" />
-
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:background="@drawable/border"
-            android:layout_margin="30px">
+            android:layout_marginLeft="30px"
+            android:layout_marginRight="30px"
+            android:layout_marginTop="10px">
 
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -113,12 +114,23 @@
 
         </LinearLayout>
 
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50px"
+            android:layout_marginTop="35px"
+            android:textColor="@android:color/black"
+            android:textSize="8pt"
+            android:text="Basic Info" />
+
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:background="@drawable/border"
-            android:layout_margin="30px">
+            android:layout_marginLeft="30px"
+            android:layout_marginRight="30px"
+            android:layout_marginTop="10px">
 
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -168,8 +180,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="8pt"
-                    android:layout_weight="0.3125"
-                    android:text="4"/>
+                    android:layout_weight="0.43"
+                    android:text="14"/>
 
                 <TextView
                     android:gravity="center"
@@ -185,6 +197,181 @@
                     android:layout_height="wrap_content"
                     android:textSize="8pt"
                     android:layout_weight="0.125"
+                    android:text="1.67 Ω"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50px"
+            android:layout_marginTop="35px"
+            android:textColor="@android:color/black"
+            android:textSize="8pt"
+            android:text="Stator Circuit" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/border"
+            android:layout_marginLeft="30px"
+            android:layout_marginRight="30px"
+            android:layout_marginTop="10px">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10px"
+                android:layout_marginRight="20px"
+                android:layout_marginLeft="20px">
+
+                <TextView
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:textSize="8pt"
+                    android:layout_weight="1"
+                    android:text="Voltage" />
+
+                <TextView
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:textSize="8pt"
+                    android:layout_weight="1"
+                    android:text="Resistance" />
+
+                <TextView
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:textSize="8pt"
+                    android:layout_weight="1"
+                    android:text="Reactance" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10px"
+                android:layout_marginRight="20px"
+                android:layout_marginLeft="20px">
+
+                <TextView
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="8pt"
+                    android:layout_weight="0.269"
+                    android:text="4.0 V"/>
+
+                <TextView
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="8pt"
+                    android:layout_weight="0.385"
+                    android:text="1.67 Ω"/>
+
+                <TextView
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="8pt"
+                    android:layout_weight="0.346"
+                    android:text="1.67 Ω"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50px"
+            android:layout_marginTop="35px"
+            android:textColor="@android:color/black"
+            android:textSize="8pt"
+            android:text="Rotor Circuit" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/border"
+            android:layout_marginLeft="30px"
+            android:layout_marginRight="30px"
+            android:layout_marginBottom="30px"
+            android:layout_marginTop="10px">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10px"
+                android:layout_marginRight="20px"
+                android:layout_marginLeft="20px">
+
+                <TextView
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:textSize="8pt"
+                    android:layout_weight="1"
+                    android:text="Voltage" />
+
+                <TextView
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:textSize="8pt"
+                    android:layout_weight="1"
+                    android:text="Resistance" />
+
+                <TextView
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:textSize="8pt"
+                    android:layout_weight="1"
+                    android:text="Reactance" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10px"
+                android:layout_marginRight="20px"
+                android:layout_marginLeft="20px">
+
+                <TextView
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="8pt"
+                    android:layout_weight="0.269"
+                    android:text="4.0 V"/>
+
+                <TextView
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="8pt"
+                    android:layout_weight="0.385"
+                    android:text="1.67 Ω"/>
+
+                <TextView
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="8pt"
+                    android:layout_weight="0.346"
                     android:text="1.67 Ω"/>
             </LinearLayout>
         </LinearLayout>
