@@ -395,7 +395,8 @@
             android:background="@drawable/border"
             android:layout_marginLeft="30px"
             android:layout_marginRight="30px"
-            android:layout_marginTop="10px">
+            android:layout_marginTop="10px"
+            android:layout_marginBottom="230px">
 
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -465,33 +466,5 @@
                     android:layout_weight="0.346"/>
             </LinearLayout>
         </LinearLayout>
-
-        <Button
-            android:layout_height="wrap_content"
-            android:layout_width="fill_parent"
-            android:gravity="center"
-            android:text="Generate Torque x Speed Profiling"
-            android:onClick="onClick"/>
-
-        <Button
-            android:layout_height="wrap_content"
-            android:layout_width="fill_parent"
-            android:gravity="center"
-            android:text="Generate Power Factor x Speed Profiling"
-            android:onClick="onClick"/>
-
-        <Button
-            android:layout_height="wrap_content"
-            android:layout_width="fill_parent"
-            android:gravity="center"
-            android:text="Generate Stator Current x Speed Profiling"
-            android:onClick="onClick"/>
-
-        <Button
-            android:layout_height="wrap_content"
-            android:layout_width="fill_parent"
-            android:gravity="center"
-            android:text="Generate Efficiency x Speed Profiling"
-            android:onClick="onClick"/>
     </LinearLayout>
 </ScrollView>

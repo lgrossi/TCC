@@ -18,6 +18,7 @@ import com.goulartgrossi.lucas.appaem.R;
 import com.goulartgrossi.lucas.appaem.fragment.AboutUsFragment;
 import com.goulartgrossi.lucas.appaem.fragment.FeedbackFragment;
 import com.goulartgrossi.lucas.appaem.fragment.IMAddFragment;
+import com.goulartgrossi.lucas.appaem.fragment.IMCurvesFragment;
 import com.goulartgrossi.lucas.appaem.fragment.IMDetailFragment;
 import com.goulartgrossi.lucas.appaem.fragment.IMListFragment;
 import com.goulartgrossi.lucas.appaem.fragment.SettingsFragment;
@@ -44,6 +45,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+            }
+        });
+
+        fab = (FloatingActionButton) findViewById(R.id.fabFeedback);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+
+        fab = (FloatingActionButton) findViewById(R.id.fabGraphs);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LayoutManager.changeFragment(IMCurvesFragment.newInstance(((IMDetailFragment) getSupportFragmentManager().findFragmentByTag(LayoutManager.TAG_IMDETAIL)).getInductionMachine()), LayoutManager.TAG_IMCURVES, MainActivity.this);
             }
         });
 
@@ -94,25 +112,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if (id == R.id.nav_im_add) {
             fragment = new IMAddFragment();
+            CURRENT_TAG = LayoutManager.TAG_IMADD;
         } else if (id == R.id.nav_im_list) {
             fragment = new IMListFragment();
+            CURRENT_TAG = LayoutManager.TAG_IMLIST;
         } else if (id == R.id.nav_app_about) {
             fragment = new AboutUsFragment();
+            CURRENT_TAG = LayoutManager.TAG_ABOUT;
         } else if (id == R.id.nav_app_feedback) {
             fragment = new FeedbackFragment();
+            CURRENT_TAG = LayoutManager.TAG_FEEDBACK;
         } else if (id == R.id.nav_app_settings) {
             fragment = new SettingsFragment();
+            CURRENT_TAG = LayoutManager.TAG_SETTINGS;
         } else {
                 fragment = new IMListFragment();
+            CURRENT_TAG = LayoutManager.TAG_IMLIST;
         }
 
         LayoutManager.changeFragment(fragment, CURRENT_TAG, this);
         return true;
     }
-
-    public void onClick(View v) {
-        InductionMachine inductionMachine = ((IMDetailFragment) getSupportFragmentManager().findFragmentByTag(LayoutManager.TAG_IMDETAIL)).getInductionMachine();
-        Toast.makeText(this, inductionMachine.getName(), Toast.LENGTH_SHORT).show();
-    }
 }
- 

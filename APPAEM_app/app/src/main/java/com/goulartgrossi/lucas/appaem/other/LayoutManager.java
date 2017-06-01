@@ -21,6 +21,7 @@ public class LayoutManager {
     public static final String TAG_FEEDBACK = "Feedback";
     public static final String TAG_SETTINGS = "Settings";
     public static final String TAG_IMDETAIL = "Detail Induction Machine";
+    public static final String TAG_IMCURVES = "IM Characteristic Curves";
 
     public static void changeFragment (Fragment fragment, String tag, FragmentActivity activity) {
         activity.setTitle(tag);
@@ -28,15 +29,19 @@ public class LayoutManager {
         if (tag == TAG_IMLIST) {
             setFABVisibility(View.VISIBLE, activity, R.id.fabAdd);
             setFABVisibility(View.INVISIBLE, activity, R.id.fabFeedback);
+            setFABVisibility(View.INVISIBLE, activity, R.id.fabGraphs);
         } else if (tag == TAG_ABOUT) {
             setFABVisibility(View.INVISIBLE, activity, R.id.fabAdd);
             setFABVisibility(View.VISIBLE, activity, R.id.fabFeedback);
+            setFABVisibility(View.INVISIBLE, activity, R.id.fabGraphs);
         } else if (tag == TAG_IMDETAIL) {
             setFABVisibility(View.INVISIBLE, activity, R.id.fabAdd);
             setFABVisibility(View.INVISIBLE, activity, R.id.fabFeedback);
+            setFABVisibility(View.VISIBLE, activity, R.id.fabGraphs);
         } else {
             setFABVisibility(View.INVISIBLE, activity, R.id.fabAdd);
             setFABVisibility(View.INVISIBLE, activity, R.id.fabFeedback);
+            setFABVisibility(View.INVISIBLE, activity, R.id.fabGraphs);
         }
 
         FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
