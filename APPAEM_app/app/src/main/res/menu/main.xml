@@ -2,7 +2,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/TorqueSpeedProfiling"
+        android:orderInCategory="100"
+        android:title="@string/settings"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/PowerFactorSpeedProfiling"
+        android:orderInCategory="100"
+        android:title="@string/settings"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/StatorCurrentSpeedProfiling"
+        android:orderInCategory="100"
+        android:title="@string/settings"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/EfficiencySpeedProfiling"
         android:orderInCategory="100"
         android:title="@string/settings"
         app:showAsAction="never" />

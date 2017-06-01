@@ -18,13 +18,13 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/IMDetailName"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_margin="30px"
             android:textColor="@android:color/black"
-            android:textSize="10pt"
-            android:text="Máquina de Teste ABC" />
+            android:textSize="10pt"/>
 
         <TextView
             android:layout_width="fill_parent"
@@ -57,9 +57,10 @@
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
                 android:textSize="8pt"
-                android:text="Manufacturer " />
+                android:text="Manufacturer" />
 
             <TextView
+                android:id="@+id/IMDetailManufacturer"
                 android:gravity="right"
                 android:layout_margin="8px"
                 android:layout_width="wrap_content"
@@ -82,9 +83,10 @@
                     android:layout_height="wrap_content"
                     android:textColor="@android:color/black"
                     android:textSize="8pt"
-                    android:text="Model " />
+                    android:text="Model" />
 
                 <TextView
+                    android:id="@+id/IMDetailModel"
                     android:gravity="right"
                     android:layout_margin="8px"
                     android:layout_width="wrap_content"
@@ -104,6 +106,7 @@
                 android:text="Description" />
 
             <TextView
+                android:id="@+id/IMDetailDescription"
                 android:gravity="left"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -176,6 +179,7 @@
                 android:layout_marginLeft="20px">
 
                 <TextView
+                    android:id="@+id/IMDetailPoles"
                     android:gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -184,20 +188,20 @@
                     android:text="14"/>
 
                 <TextView
+                    android:id="@+id/IMDetailFrequency"
                     android:gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="8pt"
-                    android:layout_weight="0.5625"
-                    android:text="60 Hz"/>
+                    android:layout_weight="0.5625"/>
 
                 <TextView
+                    android:id="@+id/IMDetailMReactance"
                     android:gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="8pt"
-                    android:layout_weight="0.125"
-                    android:text="1.67 Ω"/>
+                    android:layout_weight="0.125"/>
             </LinearLayout>
         </LinearLayout>
 
@@ -263,28 +267,28 @@
                 android:layout_marginLeft="20px">
 
                 <TextView
+                    android:id="@+id/IMDetailStatorVoltage"
                     android:gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="8pt"
-                    android:layout_weight="0.269"
-                    android:text="4.0 V"/>
+                    android:layout_weight="0.269"/>
 
                 <TextView
+                    android:id="@+id/IMDetailStatorResistance"
                     android:gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="8pt"
-                    android:layout_weight="0.385"
-                    android:text="1.67 Ω"/>
+                    android:layout_weight="0.385"/>
 
                 <TextView
+                    android:id="@+id/IMDetailStatorReactance"
                     android:gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="8pt"
-                    android:layout_weight="0.346"
-                    android:text="1.67 Ω"/>
+                    android:layout_weight="0.346"/>
             </LinearLayout>
         </LinearLayout>
 
@@ -304,7 +308,6 @@
             android:background="@drawable/border"
             android:layout_marginLeft="30px"
             android:layout_marginRight="30px"
-            android:layout_marginBottom="30px"
             android:layout_marginTop="10px">
 
             <LinearLayout
@@ -351,29 +354,144 @@
                 android:layout_marginLeft="20px">
 
                 <TextView
+                    android:id="@+id/IMDetailRotorVoltage"
                     android:gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="8pt"
-                    android:layout_weight="0.269"
-                    android:text="4.0 V"/>
+                    android:layout_weight="0.269"/>
 
                 <TextView
+                    android:id="@+id/IMDetailRotorResistance"
                     android:gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="8pt"
-                    android:layout_weight="0.385"
-                    android:text="1.67 Ω"/>
+                    android:layout_weight="0.385"/>
 
                 <TextView
+                    android:id="@+id/IMDetailRotorReactance"
                     android:gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="8pt"
-                    android:layout_weight="0.346"
-                    android:text="1.67 Ω"/>
+                    android:layout_weight="0.346"/>
             </LinearLayout>
         </LinearLayout>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50px"
+            android:layout_marginTop="35px"
+            android:textColor="@android:color/black"
+            android:textSize="8pt"
+            android:text="Thévenin's Circuit" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/border"
+            android:layout_marginLeft="30px"
+            android:layout_marginRight="30px"
+            android:layout_marginTop="10px">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10px"
+                android:layout_marginRight="20px"
+                android:layout_marginLeft="20px">
+
+                <TextView
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:textSize="8pt"
+                    android:layout_weight="1"
+                    android:text="Voltage" />
+
+                <TextView
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:textSize="8pt"
+                    android:layout_weight="1"
+                    android:text="Resistance" />
+
+                <TextView
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:textSize="8pt"
+                    android:layout_weight="1"
+                    android:text="Reactance" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10px"
+                android:layout_marginRight="20px"
+                android:layout_marginLeft="20px">
+
+                <TextView
+                    android:id="@+id/IMDetailThVoltage"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="8pt"
+                    android:layout_weight="0.269"/>
+
+                <TextView
+                    android:id="@+id/IMDetailThResistance"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="8pt"
+                    android:layout_weight="0.385"/>
+
+                <TextView
+                    android:id="@+id/IMDetailThReactance"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="8pt"
+                    android:layout_weight="0.346"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:gravity="center"
+            android:text="Generate Torque x Speed Profiling"
+            android:onClick="onClick"/>
+
+        <Button
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:gravity="center"
+            android:text="Generate Power Factor x Speed Profiling"
+            android:onClick="onClick"/>
+
+        <Button
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:gravity="center"
+            android:text="Generate Stator Current x Speed Profiling"
+            android:onClick="onClick"/>
+
+        <Button
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:gravity="center"
+            android:text="Generate Efficiency x Speed Profiling"
+            android:onClick="onClick"/>
     </LinearLayout>
 </ScrollView>

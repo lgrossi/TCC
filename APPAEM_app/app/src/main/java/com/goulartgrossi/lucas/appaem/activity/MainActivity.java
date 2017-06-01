@@ -10,27 +10,25 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.app.Fragment;
+import android.widget.Toast;
+
 import com.goulartgrossi.lucas.appaem.R;
 import com.goulartgrossi.lucas.appaem.fragment.AboutUsFragment;
 import com.goulartgrossi.lucas.appaem.fragment.FeedbackFragment;
 import com.goulartgrossi.lucas.appaem.fragment.IMAddFragment;
+import com.goulartgrossi.lucas.appaem.fragment.IMDetailFragment;
 import com.goulartgrossi.lucas.appaem.fragment.IMListFragment;
 import com.goulartgrossi.lucas.appaem.fragment.SettingsFragment;
 import com.goulartgrossi.lucas.appaem.other.LayoutManager;
 
+import appaem.InductionMachine;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     // tags used to attach the fragments
-    public static final String TAG_IMLIST = "List Induction Machines";
-    public static final String TAG_IMADD = "Add new Induction Machine";
-    public static final String TAG_ABOUT = "About Us";
-    public static final String TAG_FEEDBACK = "Feedback";
-    public static final String TAG_SETTINGS = "Settings";
-    public static final String TAG_IMDETAIL = "Detail Induction Machine";
-    public static String CURRENT_TAG = TAG_IMLIST;
+    public static String CURRENT_TAG = LayoutManager.TAG_IMLIST;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,13 +70,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -86,9 +77,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        /*if (id == R.id.action_settings) {
             return true;
-        }
+        }*/
 
         return super.onOptionsItemSelected(item);
     }
@@ -103,25 +94,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if (id == R.id.nav_im_add) {
             fragment = new IMAddFragment();
-            CURRENT_TAG = TAG_IMADD;
         } else if (id == R.id.nav_im_list) {
             fragment = new IMListFragment();
-            CURRENT_TAG = TAG_IMLIST;
         } else if (id == R.id.nav_app_about) {
             fragment = new AboutUsFragment();
-            CURRENT_TAG = TAG_ABOUT;
         } else if (id == R.id.nav_app_feedback) {
             fragment = new FeedbackFragment();
-            CURRENT_TAG = TAG_FEEDBACK;
         } else if (id == R.id.nav_app_settings) {
             fragment = new SettingsFragment();
-            CURRENT_TAG = TAG_SETTINGS;
         } else {
                 fragment = new IMListFragment();
-            CURRENT_TAG = TAG_IMLIST;
         }
 
         LayoutManager.changeFragment(fragment, CURRENT_TAG, this);
         return true;
     }
+
+    public void onClick(View v) {
+        InductionMachine inductionMachine = ((IMDetailFragment) getSupportFragmentManager().findFragmentByTag(LayoutManager.TAG_IMDETAIL)).getInductionMachine();
+        Toast.makeText(this, inductionMachine.getName(), Toast.LENGTH_SHORT).show();
+    }
 }
+ 
