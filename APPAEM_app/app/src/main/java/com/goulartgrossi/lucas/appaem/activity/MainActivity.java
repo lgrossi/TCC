@@ -24,6 +24,7 @@ import com.goulartgrossi.lucas.appaem.fragment.IMListFragment;
 import com.goulartgrossi.lucas.appaem.fragment.SettingsFragment;
 import com.goulartgrossi.lucas.appaem.other.LayoutManager;
 
+import appaem.Graph;
 import appaem.InductionMachine;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -132,5 +133,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         LayoutManager.changeFragment(fragment, CURRENT_TAG, this);
         return true;
+    }
+
+    public void setToTorqueSpeedProfilingGraph (){
+        ((IMCurvesFragment) getSupportFragmentManager().findFragmentByTag(LayoutManager.TAG_IMCURVES)).drawGraph(Graph.GraphType.TorqueSpeedProfiling);
+    }
+
+    public void setToPowerFactorSpeedProfilingGraph (){
+        ((IMCurvesFragment) getSupportFragmentManager().findFragmentByTag(LayoutManager.TAG_IMCURVES)).drawGraph(Graph.GraphType.PowerFactorSpeedProfiling);
+    }
+
+    public void setToStatorCurrentSpeedProfilingGraph (){
+        ((IMCurvesFragment) getSupportFragmentManager().findFragmentByTag(LayoutManager.TAG_IMCURVES)).drawGraph(Graph.GraphType.StatorCurrentSpeedProfiling);
+    }
+
+    public void setToEfficiencySpeedProfilingGraph (){
+        ((IMCurvesFragment) getSupportFragmentManager().findFragmentByTag(LayoutManager.TAG_IMCURVES)).drawGraph(Graph.GraphType.EfficiencySpeedProfiling);
     }
 }

@@ -6,12 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import com.jjoe64.graphview.GraphView;
 
 import com.goulartgrossi.lucas.appaem.R;
 import com.goulartgrossi.lucas.appaem.other.InductionMachineDao;
-import com.jjoe64.graphview.series.DataPoint;
-import com.jjoe64.graphview.series.LineGraphSeries;
 
 import appaem.InductionMachine;
 

@@ -1,12 +1,80 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.goulartgrossi.lucas.appaem.fragment.IMCurvesFragment"
+    android:id="@+id/DetailScrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.goulartgrossi.lucas.appaem.fragment.IMCurvesFragment">
+    android:layout_alignParentBottom="true"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentRight="true"
+    android:scrollbars="vertical"
+    android:fillViewport="true"
+    android:scrollbarSize="4dp">
 
-    <com.jjoe64.graphview.GraphView
-        android:layout_width="match_parent"
-        android:layout_height="200dip"
-        android:id="@+id/graph" />
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_margin="30px"
+        android:orientation="vertical">
 
-</FrameLayout>
+        <com.jjoe64.graphview.GraphView
+            android:layout_width="fill_parent"
+            android:layout_height="400dip"
+            android:layout_weight="1"
+            android:id="@+id/graph" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10px"
+            android:layout_marginRight="20px"
+            android:layout_marginLeft="20px">
+
+            <Button
+                android:id="@+id/button_ts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:layout_above="@+id/linearLayout1"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="56dp"
+                android:onClick="setToTorqueSpeedProfilingGraph"
+                android:text="T x N" />
+
+            <Button
+                android:id="@+id/button_pfs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:layout_above="@+id/linearLayout1"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="56dp"
+                android:onClick="setToPowerFactorSpeedProfilingGraph"
+                android:text="PF X N" />
+
+            <Button
+                android:id="@+id/button_scs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:layout_above="@+id/linearLayout1"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="56dp"
+                android:onClick="setToStatorCurrentSpeedProfilingGraph"
+                android:text="I X N" />
+
+            <Button
+                android:id="@+id/button_es"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:layout_above="@+id/linearLayout1"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="56dp"
+                android:onClick="setToEfficiencySpeedProfilingGraph"
+                android:text="E x N" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
