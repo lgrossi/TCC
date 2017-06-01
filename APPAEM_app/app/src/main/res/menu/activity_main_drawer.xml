@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item android:title="@string/induction_motor">
+            <menu>
+                <item
+                    android:id="@+id/nav_im_list"
+                    android:title="@string/motors_list" />
+                <item
+                    android:id="@+id/nav_im_add"
+                    android:title="@string/add_new" />
+            </menu>
+        </item>
+    </group>
+
+    <item android:title="@string/other">
+        <menu>
+            <item
+                android:id="@+id/nav_app_about"
+                android:title="@string/about_us" />
+            <item
+                android:id="@+id/nav_app_feedback"
+                android:title="@string/feedback" />
+            <item
+                android:id="@+id/nav_app_settings"
+                android:title="@string/settings" />
+        </menu>
+    </item>
+
+</menu>
