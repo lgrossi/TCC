@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.goulartgrossi.lucas.appaem.R;
 import com.goulartgrossi.lucas.appaem.other.InductionMachineDao;
+import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.DataPointInterface;
@@ -17,6 +18,7 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 import com.jjoe64.graphview.series.OnDataPointTapListener;
 import com.jjoe64.graphview.series.Series;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -28,7 +30,7 @@ import appaem.InductionMachineManager;
 public class IMCurvesFragment extends Fragment {
 
     private InductionMachine inductionMachine;
-    private double initialX = 0.0, finalX, scale = 0.1;
+    private Double initialX = 0.0, finalX, scale = 0.1, maxY;
     private Graph.GraphType currentGraph = Graph.GraphType.TorqueSpeedProfiling;
 
     public static IMCurvesFragment newInstance (InductionMachine inductionMachine) {
@@ -60,7 +62,11 @@ public class IMCurvesFragment extends Fragment {
 
     public void drawGraph (Graph.GraphType type, InductionMachine machine) {
         GraphView graph = (GraphView) getView().findViewById(R.id.graph);
+        NumberFormat nf = NumberFormat.getInstance();
+        nf.setMinimumFractionDigits(2);
+        graph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter(null, nf));
         graph.removeAllSeries();
+
         InductionMachineManager inductionMachineManager = new InductionMachineManager(machine != null ? machine : this.inductionMachine);
         ArrayList<Pair<Double, Double>> list;
         String title, vertTitle, horTitle = "Speed";
@@ -110,11 +116,17 @@ public class IMCurvesFragment extends Fragment {
             }
         });
 
+        if (machine == null) { maxY = series.getHighestValueY(); }
+
         graph.setTitle(title);
 
         graph.getViewport().setXAxisBoundsManual(true);
         graph.getViewport().setMinX(initialX);
         graph.getViewport().setMaxX(finalX * 1.2);
+
+        graph.getViewport().setYAxisBoundsManual(true);
+        graph.getViewport().setMinY(0.0);
+        graph.getViewport().setMaxY(maxY * 1.4);
 
         graph.getGridLabelRenderer().setVerticalAxisTitle(vertTitle);
         graph.getGridLabelRenderer().setHorizontalAxisTitle(horTitle);
