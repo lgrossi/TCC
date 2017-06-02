@@ -42,6 +42,7 @@ public class IMCurvesFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_imcurves, container, false);
         finalX = new InductionMachineManager(inductionMachine).calculateSynchronousSpeed();
+
         return view;
     }
 
