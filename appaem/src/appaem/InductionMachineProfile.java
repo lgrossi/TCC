@@ -34,13 +34,18 @@ public class InductionMachineProfile  extends ApplicationFrame {
 	public static void main(final String[] args) {	
 		
 		InductionMachine machine = new InductionMachine(60, 6, new BasicCircuit(1270.2, null, 2.8, 7.96), new BasicCircuit(null, null, 2.0, 7.96), 273.04);
+		InductionMachine machineAux = InductionMachineManager.generateAuxMachine(machine, 220.0, 30);
 	    final InductionMachineProfile demo = new InductionMachineProfile(new Graph(GraphType.TorqueSpeedProfiling, "Torque x Speed Profiling", "Speed", "Torque", 0.0, 1200.0, 0.1),  new InductionMachineManager(machine));
+	    final InductionMachineProfile demox = new InductionMachineProfile(new Graph(GraphType.TorqueSpeedProfiling, "Torque x Speed Profiling", "Speed", "Torque", 0.0, 600.0, 0.1),  new InductionMachineManager(machineAux));
 	    final InductionMachineProfile demo2 = new InductionMachineProfile(new Graph(GraphType.PowerFactorSpeedProfiling, "Power Factor x Speed Profiling", "Speed", "Power Factor", 0.0, 1200.0, 0.1),  new InductionMachineManager(machine));
 	    final InductionMachineProfile demo3 = new InductionMachineProfile(new Graph(GraphType.StatorCurrentSpeedProfiling, "Stator Current x Speed Profiling", "Speed", "Stator Current", 0.0, 1200.0, 0.1),  new InductionMachineManager(machine));
 	    final InductionMachineProfile demo4 = new InductionMachineProfile(new Graph(GraphType.EfficiencySpeedProfiling, "Efficiency x Speed Profiling", "Speed", "Efficiency", 0.0, 1200.1, 0.1),  new InductionMachineManager(machine));
 	    demo.pack();
 	    RefineryUtilities.centerFrameOnScreen(demo);
 	    demo.setVisible(true);
+	    demox.pack();
+	    RefineryUtilities.centerFrameOnScreen(demox);
+	    demox.setVisible(true);
 	    demo2.pack();
 	    RefineryUtilities.centerFrameOnScreen(demo3);
 	    demo2.setVisible(true);

@@ -20,7 +20,7 @@
 
         <com.jjoe64.graphview.GraphView
             android:layout_width="fill_parent"
-            android:layout_height="400dip"
+            android:layout_height="250dip"
             android:layout_weight="1"
             android:id="@+id/graph" />
 
@@ -39,6 +39,7 @@
                 android:backgroundTint="@color/colorPrimaryDark"
                 android:layout_above="@+id/linearLayout1"
                 android:layout_centerHorizontal="true"
+                android:layout_weight="1"
                 android:layout_marginBottom="56dp"
                 android:onClick="setToTorqueSpeedProfilingGraph"
                 android:text="T x N" />
@@ -50,6 +51,7 @@
                 android:backgroundTint="@color/colorPrimaryDark"
                 android:layout_above="@+id/linearLayout1"
                 android:layout_centerHorizontal="true"
+                android:layout_weight="1"
                 android:layout_marginBottom="56dp"
                 android:onClick="setToPowerFactorSpeedProfilingGraph"
                 android:text="PF X N" />
@@ -61,6 +63,7 @@
                 android:backgroundTint="@color/colorPrimaryDark"
                 android:layout_above="@+id/linearLayout1"
                 android:layout_centerHorizontal="true"
+                android:layout_weight="1"
                 android:layout_marginBottom="56dp"
                 android:onClick="setToStatorCurrentSpeedProfilingGraph"
                 android:text="I X N" />
@@ -72,6 +75,7 @@
                 android:backgroundTint="@color/colorPrimaryDark"
                 android:layout_above="@+id/linearLayout1"
                 android:layout_centerHorizontal="true"
+                android:layout_weight="1"
                 android:layout_marginBottom="56dp"
                 android:onClick="setToEfficiencySpeedProfilingGraph"
                 android:text="E x N" />

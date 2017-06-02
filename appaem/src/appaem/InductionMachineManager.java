@@ -49,10 +49,18 @@ public class InductionMachineManager {
 
 	/** 
 	 * Calculates the Synchronous Speed.
-	 * Ns = F / nP 
+	 * Ns = 120 * F / nP 
 	 */
 	public Double calculateSynchronousSpeed () {
 		return 120.0 * machine.getFrequency() / machine.getnPoles();
+	}
+
+	/** 
+	 * Calculates the Synchronous Speed.
+	 * F = Ns * nP / 120
+	 */
+	public Double calculateFrequencyFromSpeed (Double speed) {
+		return speed * machine.getnPoles() / 120;
 	}
 
 	/** 
@@ -242,6 +250,18 @@ public class InductionMachineManager {
 			points.add(new Pair<Double, Double>(speed, calculateEfficiency(speed)));
 		}
 		return points;
+	}
+	
+	public static InductionMachine generateAuxMachine (InductionMachine machine, Double v, Integer f) {
+		InductionMachine auxMachine = new InductionMachine(machine);
+		if (v != null && v != machine.getStator().getVoltage()) {
+			auxMachine.getStator().setVoltage(v);
+			auxMachine.setFrequency(((Double) (v * machine.getFrequency() / machine.getStator().getVoltage())).intValue());
+		} else if (f != null && f != machine.getFrequency()) {
+			auxMachine.setFrequency(f);
+			auxMachine.getStator().setVoltage((machine.getStator().getVoltage() * f / machine.getFrequency()));
+		}
+		return auxMachine;
 	}
 
 	/** 

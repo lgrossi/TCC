@@ -135,19 +135,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    public void setToTorqueSpeedProfilingGraph (){
+    public void setToTorqueSpeedProfilingGraph (View v){
         ((IMCurvesFragment) getSupportFragmentManager().findFragmentByTag(LayoutManager.TAG_IMCURVES)).drawGraph(Graph.GraphType.TorqueSpeedProfiling);
     }
 
-    public void setToPowerFactorSpeedProfilingGraph (){
+    public void setToPowerFactorSpeedProfilingGraph (View v){
         ((IMCurvesFragment) getSupportFragmentManager().findFragmentByTag(LayoutManager.TAG_IMCURVES)).drawGraph(Graph.GraphType.PowerFactorSpeedProfiling);
     }
 
-    public void setToStatorCurrentSpeedProfilingGraph (){
+    public void setToStatorCurrentSpeedProfilingGraph (View v){
         ((IMCurvesFragment) getSupportFragmentManager().findFragmentByTag(LayoutManager.TAG_IMCURVES)).drawGraph(Graph.GraphType.StatorCurrentSpeedProfiling);
     }
 
-    public void setToEfficiencySpeedProfilingGraph (){
+    public void setToEfficiencySpeedProfilingGraph (View v){
         ((IMCurvesFragment) getSupportFragmentManager().findFragmentByTag(LayoutManager.TAG_IMCURVES)).drawGraph(Graph.GraphType.EfficiencySpeedProfiling);
     }
 }

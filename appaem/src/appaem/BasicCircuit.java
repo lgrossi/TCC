@@ -10,6 +10,13 @@ public class BasicCircuit {
 	private Double reactance;
 	private Long id;
 	
+	public BasicCircuit(BasicCircuit circuit) {
+		voltage = circuit.getVoltage();
+		current = circuit.getCurrent();
+		resistance = circuit.getResistance();
+		reactance = circuit.getReactance();
+	}
+	
 	public BasicCircuit(Double v, Double i, Double r, Double x) {
 		voltage = v;
 		current = i;

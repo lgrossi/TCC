@@ -16,6 +16,18 @@ public class InductionMachine extends ElectricalMachine {
 	/** Circuito equivalente de Thevenin. */
 	private BasicCircuit thevenin;
 	
+	public InductionMachine(InductionMachine machine) {
+		this.frequency = machine.getFrequency();
+		this.nPoles = machine.getnPoles();
+		this.stator = new BasicCircuit(machine.getStator());
+		this.rotor = new BasicCircuit(machine.getRotor());
+		this.xMagnetic = machine.getXMagnetic();
+		
+		InductionMachineManager manager = new InductionMachineManager(this);
+		this.thevenin = new BasicCircuit(manager.calculateVth(), null, manager.calculateRth(), manager.calculateXth());
+	}
+	
+	
 	public InductionMachine(Integer frequency, Integer nPoles, BasicCircuit stator, BasicCircuit rotor, BasicCircuit thevenin, Double xMagnetic) {
 		this.frequency = frequency;
 		this.nPoles = nPoles;
