@@ -99,11 +99,9 @@ public class InductionMachineManager {
 	 * Calculates the Maximum Torque.
 	 * T = 3 / 2 * (1 / Ws) * (Vs² / ((Rs + sqrt(Xs + Xr)²)) 
 	 */
-	public Double calculateMaximumTorque () {
-		BasicCircuit theveninCircuit = this.machine.getThevenin();
-		
+	public Double calculateMaximumTorque () {		
 		Double eqPart1 = 3 / (2 * this.calculateSynchronousW());
-		Double eqPart2 = Math.pow(theveninCircuit.getVoltage(), 2) / (theveninCircuit.getResistance() + Math.sqrt(theveninCircuit.getResistance() + Math.pow(theveninCircuit.getReactance() + this.machine.getRotor().getReactance(), 2)));
+		Double eqPart2 = Math.pow(calculateVth(), 2) / (calculateRth() + Math.sqrt(calculateRth() + Math.pow(calculateXth() + this.machine.getRotor().getReactance(), 2)));
 		
 		return eqPart1 * eqPart2;
 	}
@@ -155,8 +153,7 @@ public class InductionMachineManager {
 	 * I2 = |Vth| / |(Rth + R2/s) + j(X2 + Xth)| 
 	 */
 	public Double calculateRotorCurrent (Double n, Double r2) {
-		BasicCircuit theveninCircuit = this.machine.getThevenin();
-		return theveninCircuit.getVoltage() / Math.sqrt(Math.pow(theveninCircuit.getResistance() + r2/this.calculateSplit(n), 2) + Math.pow(theveninCircuit.getReactance() + this.machine.getRotor().getReactance(), 2));
+		return calculateVth() / Math.sqrt(Math.pow(calculateRth() + r2/this.calculateSplit(n), 2) + Math.pow(calculateXth() + this.machine.getRotor().getReactance(), 2));
 	}
 	
 	

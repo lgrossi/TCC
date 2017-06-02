@@ -11,6 +11,7 @@ import com.goulartgrossi.lucas.appaem.R;
 import com.goulartgrossi.lucas.appaem.other.InductionMachineDao;
 
 import appaem.InductionMachine;
+import appaem.InductionMachineManager;
 
 public class IMDetailFragment extends Fragment {
 
@@ -43,25 +44,26 @@ public class IMDetailFragment extends Fragment {
         textView.setText(this.inductionMachine.getXMagnetic().toString() + " Ω");
 
         textView = (TextView) view.findViewById(R.id.IMDetailStatorVoltage);
-        textView.setText(String.format("%.2f", this.inductionMachine.getStator().getVoltage()) + " V");
+        textView.setText(String.format("%.2f", this.inductionMachine.getStator().getVoltage() != null ? this.inductionMachine.getStator().getVoltage() : 0.0) + " V");
         textView = (TextView) view.findViewById(R.id.IMDetailStatorResistance);
-        textView.setText(String.format("%.2f", this.inductionMachine.getStator().getResistance()) + " Ω");
+        textView.setText(String.format("%.2f", this.inductionMachine.getStator().getResistance() != null ? this.inductionMachine.getStator().getResistance() : 0.0) + " Ω");
         textView = (TextView) view.findViewById(R.id.IMDetailStatorReactance);
-        textView.setText(String.format("%.2f", this.inductionMachine.getStator().getReactance()) + " Ω");
+        textView.setText(String.format("%.2f", this.inductionMachine.getStator().getReactance() != null ? this.inductionMachine.getStator().getReactance() : 0.0) + " Ω");
 
         textView = (TextView) view.findViewById(R.id.IMDetailRotorVoltage);
-        textView.setText(String.format("%.2f", this.inductionMachine.getRotor().getVoltage()) + " V");
+        textView.setText(String.format("%.2f", this.inductionMachine.getRotor().getVoltage() != null ? this.inductionMachine.getRotor().getVoltage() : 0.0) + " V");
         textView = (TextView) view.findViewById(R.id.IMDetailRotorResistance);
-        textView.setText(String.format("%.2f", this.inductionMachine.getRotor().getResistance()) + " Ω");
+        textView.setText(String.format("%.2f", this.inductionMachine.getRotor().getResistance() != null ? this.inductionMachine.getRotor().getResistance() : 0.0) + " Ω");
         textView = (TextView) view.findViewById(R.id.IMDetailRotorReactance);
-        textView.setText(String.format("%.2f", this.inductionMachine.getRotor().getReactance()) + " Ω");
+        textView.setText(String.format("%.2f", this.inductionMachine.getRotor().getReactance() != null ? this.inductionMachine.getRotor().getReactance() : 0.0) + " Ω");
 
         textView = (TextView) view.findViewById(R.id.IMDetailThVoltage);
-        textView.setText(String.format("%.2f", this.inductionMachine.getThevenin().getVoltage()) + " V");
+        InductionMachineManager manager = new InductionMachineManager(this.inductionMachine);
+        textView.setText(String.format("%.2f", manager.calculateVth() != null ? manager.calculateVth() : 0.0) + " V");
         textView = (TextView) view.findViewById(R.id.IMDetailThResistance);
-        textView.setText(String.format("%.2f", this.inductionMachine.getThevenin().getResistance()) + " Ω");
+        textView.setText(String.format("%.2f", manager.calculateRth() != null ? manager.calculateRth() : 0.0) + " Ω");
         textView = (TextView) view.findViewById(R.id.IMDetailThReactance);
-        textView.setText(String.format("%.2f", this.inductionMachine.getThevenin().getReactance()) + " Ω");
+        textView.setText(String.format("%.2f", manager.calculateXth() != null ? manager.calculateXth() : 0.0) + " Ω");
 
         return view;
     }

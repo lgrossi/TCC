@@ -22,9 +22,6 @@ public class InductionMachine extends ElectricalMachine {
 		this.stator = new BasicCircuit(machine.getStator());
 		this.rotor = new BasicCircuit(machine.getRotor());
 		this.xMagnetic = machine.getXMagnetic();
-		
-		InductionMachineManager manager = new InductionMachineManager(this);
-		this.thevenin = new BasicCircuit(manager.calculateVth(), null, manager.calculateRth(), manager.calculateXth());
 	}
 	
 	
@@ -43,9 +40,6 @@ public class InductionMachine extends ElectricalMachine {
 		this.stator = stator;
 		this.rotor = rotor;
 		this.xMagnetic = xMagnetic;
-		
-		InductionMachineManager manager = new InductionMachineManager(this);
-		this.thevenin = new BasicCircuit(manager.calculateVth(), null, manager.calculateRth(), manager.calculateXth());
 	}
 	
 	/**

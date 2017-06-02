@@ -73,7 +73,6 @@ public class InductionMachineDao extends SQLiteOpenHelper {
     public boolean deleteInductionMachine(InductionMachine machine){
         circuitDao.deleteInductionMachine(machine.getRotor());
         circuitDao.deleteInductionMachine(machine.getStator());
-        //circuitDao.deleteInductionMachine(machine.getThevenin());
         return this.getWritableDatabase().delete(IM_TABLE_NAME, IM_COLUMN_ID + "=" + machine.getId(), null) > 0;
     }
 
@@ -92,7 +91,6 @@ public class InductionMachineDao extends SQLiteOpenHelper {
 
         values.put(IM_COLUMN_STATOR_ID, circuitDao.saveCircuitToDB(machine.getStator()));
         values.put(IM_COLUMN_ROTOR_ID, circuitDao.saveCircuitToDB(machine.getRotor()));
-        values.put(IM_COLUMN_THEVENIN_ID, circuitDao.saveCircuitToDB(machine.getThevenin()));
 
         return database.insert(IM_TABLE_NAME, null, values);
     }
