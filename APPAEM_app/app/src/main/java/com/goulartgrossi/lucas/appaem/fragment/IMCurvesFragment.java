@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -63,9 +64,9 @@ public class IMCurvesFragment extends Fragment {
     public void drawGraph (Graph.GraphType type, InductionMachine machine) {
         GraphView graph = (GraphView) getView().findViewById(R.id.graph);
         NumberFormat nf = NumberFormat.getInstance();
-        nf.setMinimumFractionDigits(2);
-        graph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter(null, nf));
         graph.removeAllSeries();
+
+        Integer decimalDigits = 0;
 
         InductionMachineManager inductionMachineManager = new InductionMachineManager(machine != null ? machine : this.inductionMachine);
         ArrayList<Pair<Double, Double>> list;
@@ -83,6 +84,7 @@ public class IMCurvesFragment extends Fragment {
                 title = "Power Factor x Speed Profiling";
                 list = inductionMachineManager.getPowerFactorSpeedProfilePoints(new Graph(type, title, horTitle, vertTitle, initialX, finalX, scale));
                 currentGraph = Graph.GraphType.PowerFactorSpeedProfiling;
+                decimalDigits = 2;
                 break;
             case StatorCurrentSpeedProfiling:
                 vertTitle = "Stator Current";
@@ -95,6 +97,7 @@ public class IMCurvesFragment extends Fragment {
                 title = "Efficiency x Speed Profiling";
                 list = inductionMachineManager.getEfficiencySpeedProfilePoints(new Graph(type, title, horTitle, vertTitle, initialX, finalX + 0.1, scale));
                 currentGraph = Graph.GraphType.EfficiencySpeedProfiling;
+                decimalDigits = 2;
                 break;
         }
         ArrayList<DataPoint> dataPointArrayList = new ArrayList<>();
@@ -115,10 +118,26 @@ public class IMCurvesFragment extends Fragment {
                 Toast.makeText(getActivity(), "Series1: On Data Point clicked: "+dataPoint, Toast.LENGTH_SHORT).show();
             }
         });
+        graph.setOnTouchListener(new View.OnTouchListener(){
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                // do whatever custom behavior you want here
+                // return false so that the base onTouch event (pan, zoom) can still execute.
+                return false;
+            }
+        });
 
         if (machine == null) { maxY = series.getHighestValueY(); }
 
+        series.setDrawBackground(true);
+
+        graph.getGridLabelRenderer().setNumHorizontalLabels(5);
+        graph.getGridLabelRenderer().setNumVerticalLabels(7);
+
         graph.setTitle(title);
+
+        nf.setMinimumFractionDigits(decimalDigits);
+        graph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter(null, nf));
 
         graph.getViewport().setXAxisBoundsManual(true);
         graph.getViewport().setMinX(initialX);
@@ -126,7 +145,7 @@ public class IMCurvesFragment extends Fragment {
 
         graph.getViewport().setYAxisBoundsManual(true);
         graph.getViewport().setMinY(0.0);
-        graph.getViewport().setMaxY(maxY * 1.4);
+        graph.getViewport().setMaxY(maxY * 1.2);
 
         graph.getGridLabelRenderer().setVerticalAxisTitle(vertTitle);
         graph.getGridLabelRenderer().setHorizontalAxisTitle(horTitle);

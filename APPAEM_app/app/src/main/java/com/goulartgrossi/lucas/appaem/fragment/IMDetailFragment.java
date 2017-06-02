@@ -37,35 +37,45 @@ public class IMDetailFragment extends Fragment {
         textView = (TextView) view.findViewById(R.id.IMDetailDescription);
         textView.setText(this.inductionMachine.getDescription());
         textView = (TextView) view.findViewById(R.id.IMDetailPoles);
-        textView.setText(this.inductionMachine.getnPoles().toString());
+        textView.setText(generateLabelText(this.inductionMachine.getnPoles(), ""));
         textView = (TextView) view.findViewById(R.id.IMDetailFrequency);
-        textView.setText(this.inductionMachine.getFrequency().toString() + " Hz");
+        textView.setText(generateLabelText(this.inductionMachine.getFrequency(), "Hz"));
         textView = (TextView) view.findViewById(R.id.IMDetailMReactance);
-        textView.setText(this.inductionMachine.getXMagnetic().toString() + " Ω");
+        textView.setText(generateLabelText(this.inductionMachine.getXMagnetic().doubleValue(), "Ω"));
 
         textView = (TextView) view.findViewById(R.id.IMDetailStatorVoltage);
-        textView.setText(String.format("%.2f", this.inductionMachine.getStator().getVoltage() != null ? this.inductionMachine.getStator().getVoltage() : 0.0) + " V");
+        textView.setText(generateLabelText(this.inductionMachine.getStator().getVoltage(), "V"));
         textView = (TextView) view.findViewById(R.id.IMDetailStatorResistance);
-        textView.setText(String.format("%.2f", this.inductionMachine.getStator().getResistance() != null ? this.inductionMachine.getStator().getResistance() : 0.0) + " Ω");
+        textView.setText(generateLabelText(this.inductionMachine.getStator().getResistance(), "Ω"));
         textView = (TextView) view.findViewById(R.id.IMDetailStatorReactance);
-        textView.setText(String.format("%.2f", this.inductionMachine.getStator().getReactance() != null ? this.inductionMachine.getStator().getReactance() : 0.0) + " Ω");
+        textView.setText(generateLabelText(this.inductionMachine.getStator().getReactance(), "Ω"));
 
         textView = (TextView) view.findViewById(R.id.IMDetailRotorVoltage);
-        textView.setText(String.format("%.2f", this.inductionMachine.getRotor().getVoltage() != null ? this.inductionMachine.getRotor().getVoltage() : 0.0) + " V");
+        textView.setText(generateLabelText(this.inductionMachine.getRotor().getVoltage(), "V"));
         textView = (TextView) view.findViewById(R.id.IMDetailRotorResistance);
-        textView.setText(String.format("%.2f", this.inductionMachine.getRotor().getResistance() != null ? this.inductionMachine.getRotor().getResistance() : 0.0) + " Ω");
+        textView.setText(generateLabelText(this.inductionMachine.getRotor().getResistance(), "Ω"));
         textView = (TextView) view.findViewById(R.id.IMDetailRotorReactance);
-        textView.setText(String.format("%.2f", this.inductionMachine.getRotor().getReactance() != null ? this.inductionMachine.getRotor().getReactance() : 0.0) + " Ω");
+        textView.setText(generateLabelText(this.inductionMachine.getRotor().getReactance(), "Ω"));
 
         textView = (TextView) view.findViewById(R.id.IMDetailThVoltage);
         InductionMachineManager manager = new InductionMachineManager(this.inductionMachine);
-        textView.setText(String.format("%.2f", manager.calculateVth() != null ? manager.calculateVth() : 0.0) + " V");
+        textView.setText(generateLabelText(manager.calculateVth(), "V"));
         textView = (TextView) view.findViewById(R.id.IMDetailThResistance);
-        textView.setText(String.format("%.2f", manager.calculateRth() != null ? manager.calculateRth() : 0.0) + " Ω");
+        textView.setText(generateLabelText(manager.calculateRth(), "Ω"));
         textView = (TextView) view.findViewById(R.id.IMDetailThReactance);
-        textView.setText(String.format("%.2f", manager.calculateXth() != null ? manager.calculateXth() : 0.0) + " Ω");
+        textView.setText(generateLabelText(manager.calculateXth(), "Ω"));
 
         return view;
+    }
+
+    public String generateLabelText (Integer entrance, String unity) {
+        if (entrance == null) return "--------";
+        return entrance.toString() + " " + unity;
+    }
+
+    public String generateLabelText (Double entrance, String unity) {
+        if (entrance == null) return "--------";
+        return String.format("%.2f", entrance) + " " + unity;
     }
 
     @Override

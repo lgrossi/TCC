@@ -94,6 +94,24 @@ public class InductionMachineManager {
 	public Double calculateTorque (Double n, Double r2) {
 		return 3 * r2 / (this.calculateSplit(n) * this.calculateSynchronousW()) * Math.pow(this.calculateRotorCurrent(n, r2), 2);
 	}
+	
+	/** 
+	 * Calculates the Torque.
+	 * T = 3 * (Rr / (Ns - N)) * (Vs² / ((Rs + Rr/s)² + (Xs + Xr)²))
+	 * Ns = 3 * (Rr/ T) * (Vs² / ((Rs + Rr/s)² + (Xs + Xr)²) - N
+	 */
+	public Double calculateSynchronousWFromTorquePoint (Double n, Double T) {
+		return this.calculateSynchronousWFromTorquePoint (n, T, this.machine.getRotor().getResistance());
+	}
+	
+	/** 
+	 * Calculates the Torque.
+	 * T = 3 * (Rr / (Ns - N)) * (Vs² / ((Rs + Rr/s)² + (Xs + Xr)²))
+	 * Ns = 3 * (Rr/ T) * (Vs² / ((Rs + Rr/s)² + (Xs + Xr)²) - N
+	 */
+	public Double calculateSynchronousWFromTorquePoint (Double n, Double T, Double r2) {
+		return 3 * (r2 / T) * Math.pow(this.calculateRotorCurrent(n, r2), 2) - n;
+	}
 
 	/** 
 	 * Calculates the Maximum Torque.
