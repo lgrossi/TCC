@@ -32,22 +32,24 @@ public class InductionMachineProfile  extends ApplicationFrame {
 	}
 
 	public static void main(final String[] args) {	
+
+		InductionMachine machine = new InductionMachine(60, 4, new BasicCircuit(220.0, null, 2.4, 2.146), new BasicCircuit(null, null, 1.793, 2.146), 53.45);
+		final InductionMachineProfile demo = new InductionMachineProfile(new Graph(GraphType.TorqueSpeedProfiling, "Torque x Speed Profiling", "Speed", "Torque", 0.0, 1800.0, 0.1),  new InductionMachineManager(machine));
+	    final InductionMachineProfile demo2 = new InductionMachineProfile(new Graph(GraphType.PowerFactorSpeedProfiling, "Power Factor x Speed Profiling", "Speed", "Power Factor", 0.0, 1800.0, 0.1),  new InductionMachineManager(machine));
+	    final InductionMachineProfile demo3 = new InductionMachineProfile(new Graph(GraphType.StatorCurrentSpeedProfiling, "Stator Current x Speed Profiling", "Speed", "Stator Current", 0.0, 1800.0, 0.1),  new InductionMachineManager(machine));
+	    final InductionMachineProfile demo4 = new InductionMachineProfile(new Graph(GraphType.EfficiencySpeedProfiling, "Efficiency x Speed Profiling", "Speed", "Efficiency", 0.0, 1800.1, 0.1),  new InductionMachineManager(machine));
+	    
+		machine = new InductionMachine(60, 4, new BasicCircuit(220.0, null, 3.3, 2.146), new BasicCircuit(null, null, 1.793, 2.146), 52.45);
+		final InductionMachineProfile demox = new InductionMachineProfile(new Graph(GraphType.TorqueSpeedProfiling, "Torque2 x Speed Profiling", "Speed", "Torque", 0.0, 1800.0, 0.1),  new InductionMachineManager(machine));
+	    final InductionMachineProfile demo2x = new InductionMachineProfile(new Graph(GraphType.PowerFactorSpeedProfiling, "Power Factor x Speed Profiling", "Speed", "Power Factor", 0.0, 1800.0, 0.1),  new InductionMachineManager(machine));
+	    final InductionMachineProfile demo3x = new InductionMachineProfile(new Graph(GraphType.StatorCurrentSpeedProfiling, "Stator Current x Speed Profiling", "Speed", "Stator Current", 0.0, 1800.0, 0.1),  new InductionMachineManager(machine));
+	    final InductionMachineProfile demo4x = new InductionMachineProfile(new Graph(GraphType.EfficiencySpeedProfiling, "Efficiency x Speed Profiling", "Speed", "Efficiency", 0.0, 1800.1, 0.1),  new InductionMachineManager(machine));
 		
-		InductionMachine machine = new InductionMachine(60, 6, new BasicCircuit(1270.2, null, 2.8, 7.96), new BasicCircuit(null, null, 2.0, 7.96), 273.04);
-		InductionMachine machineAux = InductionMachineManager.generateAuxMachine(machine, 220.0, 30);
-	    final InductionMachineProfile demo = new InductionMachineProfile(new Graph(GraphType.TorqueSpeedProfiling, "Torque x Speed Profiling", "Speed", "Torque", 0.0, 1200.0, 0.1),  new InductionMachineManager(machine));
-	    final InductionMachineProfile demox = new InductionMachineProfile(new Graph(GraphType.TorqueSpeedProfiling, "Torque x Speed Profiling", "Speed", "Torque", 0.0, 600.0, 0.1),  new InductionMachineManager(machineAux));
-	    final InductionMachineProfile demo2 = new InductionMachineProfile(new Graph(GraphType.PowerFactorSpeedProfiling, "Power Factor x Speed Profiling", "Speed", "Power Factor", 0.0, 1200.0, 0.1),  new InductionMachineManager(machine));
-	    final InductionMachineProfile demo3 = new InductionMachineProfile(new Graph(GraphType.StatorCurrentSpeedProfiling, "Stator Current x Speed Profiling", "Speed", "Stator Current", 0.0, 1200.0, 0.1),  new InductionMachineManager(machine));
-	    final InductionMachineProfile demo4 = new InductionMachineProfile(new Graph(GraphType.EfficiencySpeedProfiling, "Efficiency x Speed Profiling", "Speed", "Efficiency", 0.0, 1200.1, 0.1),  new InductionMachineManager(machine));
 	    demo.pack();
 	    RefineryUtilities.centerFrameOnScreen(demo);
 	    demo.setVisible(true);
-	    demox.pack();
-	    RefineryUtilities.centerFrameOnScreen(demox);
-	    demox.setVisible(true);
 	    demo2.pack();
-	    RefineryUtilities.centerFrameOnScreen(demo3);
+	    RefineryUtilities.centerFrameOnScreen(demo2);
 	    demo2.setVisible(true);
 	    demo3.pack();
 	    RefineryUtilities.centerFrameOnScreen(demo3);
@@ -55,6 +57,19 @@ public class InductionMachineProfile  extends ApplicationFrame {
 	    demo4.pack();
 	    RefineryUtilities.centerFrameOnScreen(demo4);
 	    demo4.setVisible(true);
+
+	    demox.pack();
+	    RefineryUtilities.centerFrameOnScreen(demox);
+	    demox.setVisible(true);
+	    demo2x.pack();
+	    RefineryUtilities.centerFrameOnScreen(demo2x);
+	    demo2x.setVisible(true);
+	    demo3x.pack();
+	    RefineryUtilities.centerFrameOnScreen(demo3x);
+	    demo3x.setVisible(true);
+	    demo4x.pack();
+	    RefineryUtilities.centerFrameOnScreen(demo4x);
+	    demo4x.setVisible(true);
 	    System.out.println(new InductionMachineManager(machine).calculateMaximumTorque());
 	}
 }

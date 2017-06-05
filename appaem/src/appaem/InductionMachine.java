@@ -15,6 +15,8 @@ public class InductionMachine extends ElectricalMachine {
 	private BasicCircuit rotor;
 	/** Circuito equivalente de Thevenin. */
 	private BasicCircuit thevenin;
+	/** Dados de placa*/
+	private CatalogData catalogData;
 	
 	public InductionMachine(InductionMachine machine) {
 		this.frequency = machine.getFrequency();
@@ -124,5 +126,15 @@ public class InductionMachine extends ElectricalMachine {
 	 */
 	public void setThevenin(BasicCircuit thevenin) {
 		this.thevenin = thevenin;
+	}
+
+
+	public CatalogData getCatalogData() {
+		return catalogData;
+	}
+
+
+	public void setCatalogData(CatalogData catalogData) {
+		this.catalogData = catalogData;
 	}
 }

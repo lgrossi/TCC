@@ -72,10 +72,10 @@ public class InductionMachineManager {
 	}
 
 	/** 
-	 * Calculates the Split.
+	 * Calculates the Slip.
 	 * S = (Ws - W) / Ws 
 	 */
-	public Double calculateSplit (Double n) {
+	public Double calculateSlip (Double n) {
 		return (this.calculateSynchronousSpeed() - n)/this.calculateSynchronousSpeed();
 	}
 	
@@ -92,7 +92,7 @@ public class InductionMachineManager {
 	 * T = 3 * (Rr / (s * Ws)) * (Vs² / ((Rs + Rr/s)² + (Xs + Xr)²))
 	 */
 	public Double calculateTorque (Double n, Double r2) {
-		return 3 * r2 / (this.calculateSplit(n) * this.calculateSynchronousW()) * Math.pow(this.calculateRotorCurrent(n, r2), 2);
+		return 3 * r2 / (this.calculateSlip(n) * this.calculateSynchronousW()) * Math.pow(this.calculateRotorCurrent(n, r2), 2);
 	}
 	
 	/** 
@@ -137,8 +137,8 @@ public class InductionMachineManager {
 	 * Z1 = R1 + jX1 + jXm * (r2/s + jX2)/(r2/s + j(Xm + X2)). 
 	 */
 	public Complex calculateStatorImpedance (Double n, Double r2, Double x2) {
-		Double split = this.calculateSplit(n);
-		Complex zR = new Complex(r2/split, x2), zS = new Complex(this.machine.getStator().getResistance(), this.machine.getStator().getReactance()), zM = new Complex(0, this.machine.getXMagnetic());
+		Double slip = this.calculateSlip(n);
+		Complex zR = new Complex(r2/slip, x2), zS = new Complex(this.machine.getStator().getResistance(), this.machine.getStator().getReactance()), zM = new Complex(0, this.machine.getXMagnetic());
 		return zS.plus(zM.times(zR).divides(zR.plus(zM)));
 	}
 	
@@ -171,7 +171,7 @@ public class InductionMachineManager {
 	 * I2 = |Vth| / |(Rth + R2/s) + j(X2 + Xth)| 
 	 */
 	public Double calculateRotorCurrent (Double n, Double r2) {
-		return calculateVth() / Math.sqrt(Math.pow(calculateRth() + r2/this.calculateSplit(n), 2) + Math.pow(calculateXth() + this.machine.getRotor().getReactance(), 2));
+		return calculateVth() / Math.sqrt(Math.pow(calculateRth() + r2/this.calculateSlip(n), 2) + Math.pow(calculateXth() + this.machine.getRotor().getReactance(), 2));
 	}
 	
 	
@@ -203,8 +203,8 @@ public class InductionMachineManager {
 	 * Calculates the Output Power.
 	 * Pout = 3 * |I2|² * R2/s * (1 - s)
 	 */
-	public Double calculateOutputPower (Double rotorCurrent, Double split) {
-		return 3 * Math.pow(rotorCurrent, 2) * (this.machine.getRotor().getResistance() / split) * (1 - split);
+	public Double calculateOutputPower (Double rotorCurrent, Double slip) {
+		return 3 * Math.pow(rotorCurrent, 2) * (this.machine.getRotor().getResistance() / slip) * (1 - slip);
 	}
 	
 	/** 
@@ -220,7 +220,7 @@ public class InductionMachineManager {
 	 * Is = V1/Z1. 
 	 */
 	public Double calculateEfficiency (Double n, Double r2, Double x2) {
-		return this.calculateOutputPower(this.calculateRotorCurrent(n, r2), this.calculateSplit(n)) / this.calculateInputPower(this.calculateStatorCurrent(n, r2, x2));
+		return this.calculateOutputPower(this.calculateRotorCurrent(n, r2), this.calculateSlip(n)) / this.calculateInputPower(this.calculateStatorCurrent(n, r2, x2));
 	}
 
 	/** 

@@ -31,14 +31,16 @@ public class InductionMachineDao extends SQLiteOpenHelper {
     public static final String IM_COLUMN_XMAGNETIC = "xmagnetic";
     public static final String IM_COLUMN_STATOR_ID = "stator";
     public static final String IM_COLUMN_ROTOR_ID = "rotor";
-    public static final String IM_COLUMN_THEVENIN_ID = "thevenin";
+    public static final String IM_COLUMN_CD_ID = "thevenin";
 
     private CircuitDao circuitDao;
+    private CatalogDataDao catalogDataDao;
 
     public InductionMachineDao(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         onCreate(this.getWritableDatabase());
         circuitDao = new CircuitDao(context);
+        catalogDataDao = new CatalogDataDao(context);
     }
 
     @Override
@@ -56,7 +58,7 @@ public class InductionMachineDao extends SQLiteOpenHelper {
                 IM_COLUMN_XMAGNETIC + " DOUBLE, " +
                 IM_COLUMN_STATOR_ID + " LONG, " +
                 IM_COLUMN_ROTOR_ID + " LONG, " +
-                IM_COLUMN_THEVENIN_ID + " LONG" + ")");
+                IM_COLUMN_CD_ID + " LONG" + ")");
     }
 
     @Override
@@ -67,12 +69,14 @@ public class InductionMachineDao extends SQLiteOpenHelper {
 
     public void deleteAll () {
         circuitDao.deleteAll();
+        catalogDataDao.deleteAll();
         this.getWritableDatabase().execSQL("delete from " + IM_TABLE_NAME);
     }
 
     public boolean deleteInductionMachine(InductionMachine machine){
         circuitDao.deleteInductionMachine(machine.getRotor());
         circuitDao.deleteInductionMachine(machine.getStator());
+        catalogDataDao.deleteCatalogData(machine.getCatalogData());
         return this.getWritableDatabase().delete(IM_TABLE_NAME, IM_COLUMN_ID + "=" + machine.getId(), null) > 0;
     }
 
@@ -91,6 +95,7 @@ public class InductionMachineDao extends SQLiteOpenHelper {
 
         values.put(IM_COLUMN_STATOR_ID, circuitDao.saveCircuitToDB(machine.getStator()));
         values.put(IM_COLUMN_ROTOR_ID, circuitDao.saveCircuitToDB(machine.getRotor()));
+        values.put(IM_COLUMN_CD_ID, catalogDataDao.saveCatalogDataToDB(machine.getCatalogData()));
 
         return database.insert(IM_TABLE_NAME, null, values);
     }
@@ -111,7 +116,7 @@ public class InductionMachineDao extends SQLiteOpenHelper {
                 IM_COLUMN_XMAGNETIC,
                 IM_COLUMN_STATOR_ID,
                 IM_COLUMN_ROTOR_ID,
-                IM_COLUMN_THEVENIN_ID
+                IM_COLUMN_CD_ID
         };
 
         Cursor cursor = database.query(
@@ -132,6 +137,8 @@ public class InductionMachineDao extends SQLiteOpenHelper {
                         circuitDao.readCircuitFromDB(cursor.getLong(cursor.getColumnIndex(IM_COLUMN_STATOR_ID))),
                         circuitDao.readCircuitFromDB(cursor.getLong(cursor.getColumnIndex(IM_COLUMN_ROTOR_ID))),
                         cursor.getDouble(cursor.getColumnIndex(IM_COLUMN_XMAGNETIC)));
+
+                machine.setCatalogData(catalogDataDao.readCatalogDataFromDB(cursor.getLong(cursor.getColumnIndex(IM_COLUMN_CD_ID))));
 
                 machine.defineBasicMachineData(cursor.getLong(cursor.getColumnIndex(IM_COLUMN_ID)),
                         cursor.getString(cursor.getColumnIndex(IM_COLUMN_NAME)),
