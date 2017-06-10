@@ -222,7 +222,7 @@ public class InductionMachineManager {
 	public Double calculateEfficiency (Double n, Double r2, Double x2) {
 		return this.calculateOutputPower(this.calculateRotorCurrent(n, r2), this.calculateSlip(n)) / this.calculateInputPower(this.calculateStatorCurrent(n, r2, x2));
 	}
-
+	
 	/** 
 	 * Gets the Torque X Speed profile points.
 	 */

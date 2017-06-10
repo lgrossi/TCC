@@ -12,6 +12,10 @@ public class Complex {
         im = imag;
     }
 
+    public static Complex phasorToRectangular(Double modulus, Double phase) {
+    	return new Complex(modulus * Math.cos(phase), modulus * Math.sin(phase));
+    }
+
     // return a string representation of the invoking Complex object
     public String toString() {
         if (im == 0) return re + "";

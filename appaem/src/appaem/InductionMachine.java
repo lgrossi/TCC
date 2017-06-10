@@ -13,8 +13,6 @@ public class InductionMachine extends ElectricalMachine {
 	private BasicCircuit stator;
 	/** Circuito rotor. */
 	private BasicCircuit rotor;
-	/** Circuito equivalente de Thevenin. */
-	private BasicCircuit thevenin;
 	/** Dados de placa*/
 	private CatalogData catalogData;
 	
@@ -24,16 +22,6 @@ public class InductionMachine extends ElectricalMachine {
 		this.stator = new BasicCircuit(machine.getStator());
 		this.rotor = new BasicCircuit(machine.getRotor());
 		this.xMagnetic = machine.getXMagnetic();
-	}
-	
-	
-	public InductionMachine(Integer frequency, Integer nPoles, BasicCircuit stator, BasicCircuit rotor, BasicCircuit thevenin, Double xMagnetic) {
-		this.frequency = frequency;
-		this.nPoles = nPoles;
-		this.stator = stator;
-		this.rotor = rotor;
-		this.thevenin = thevenin;
-		this.xMagnetic = xMagnetic;
 	}
 	
 	public InductionMachine(Integer frequency, Integer nPoles, BasicCircuit stator, BasicCircuit rotor, Double xMagnetic) {
@@ -112,20 +100,6 @@ public class InductionMachine extends ElectricalMachine {
 	 */
 	public void setRotor(BasicCircuit rotor) {
 		this.rotor = rotor;
-	}
-
-	/**
-	 * @return the thevenin
-	 */
-	public BasicCircuit getThevenin() {
-		return this.thevenin;
-	}
-
-	/**
-	 * @param thevenin the thevenin to set
-	 */
-	public void setThevenin(BasicCircuit thevenin) {
-		this.thevenin = thevenin;
 	}
 
 
