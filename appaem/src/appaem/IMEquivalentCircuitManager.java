@@ -58,9 +58,10 @@ public class IMEquivalentCircuitManager {
 	
 	public static void main(String[] args) {
 		Pair<Double, BasicCircuit> circuitsFromTest = IMEquivalentCircuitManager.calculateEquivalentCircuitFromTests(210.0, 8.01, 222.5, 322.0, 10.75, 40.05, 0.395);
+		//Double wS = 188.5, kTh = 1.0, iN = 4.32, tN = 6.18, sN = 0.0556, v1 = 127.0, pf100 = 0.82, tMax = 17.3, r2 = 1.793, xm = 53.55, x1 = 2.146;
 		Double wS = 188.5, kTh = 1.0, iN = 14.0, tN = 20.5, sN = 0.0472, v1 = 127.0, pf100 = 0.81, tMax = 63.54;
 		
-		Pair<Double, BasicCircuit> fromCatalog = IMEquivalentCircuitManager.calculateEquivalentCircuitFromCatalog(pf100, iN, wS, tN, sN, v1, tMax, kTh);
+		Pair<Double, BasicCircuit> fromCatalog = IMEquivalentCircuitManager.calculateEquivalentCircuitFromCatalog(pf100, iN, wS, tN, sN, v1, tMax, kTh, 0.0);
 		
 		System.out.println(fromCatalog.getElement1().getResistance() + " / " + circuitsFromTest.getElement1().getResistance() + " = " + Math.abs(1 - fromCatalog.getElement1().getResistance() / circuitsFromTest.getElement1().getResistance()) * 100 + "%");
 		System.out.println(fromCatalog.getElement1().getReactance() + " / " + circuitsFromTest.getElement1().getReactance() + " = " + Math.abs(1 - fromCatalog.getElement1().getReactance() / circuitsFromTest.getElement1().getReactance()) * 100 + "%");
