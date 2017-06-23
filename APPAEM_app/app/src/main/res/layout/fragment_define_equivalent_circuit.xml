@@ -37,7 +37,7 @@ android:scrollbarSize="4dp">
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
                 android:textSize="8pt"
-                android:text="Phase Voltage:"/>
+                android:text="Phase Voltage (V):"/>
             <EditText
                 android:id="@+id/defineV1"
                 android:layout_height="wrap_content"
@@ -49,7 +49,7 @@ android:scrollbarSize="4dp">
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
                 android:textSize="8pt"
-                android:text="Stator Resistance:"/>
+                android:text="Stator Resistance (Ω):"/>
             <EditText
                 android:id="@+id/defineR1"
                 android:layout_height="wrap_content"
@@ -61,7 +61,7 @@ android:scrollbarSize="4dp">
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
                 android:textSize="8pt"
-                android:text="Stator Reactance:"/>
+                android:text="Stator Reactance (Ω):"/>
             <EditText
                 android:id="@+id/defineX1"
                 android:layout_height="wrap_content"
@@ -73,7 +73,7 @@ android:scrollbarSize="4dp">
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
                 android:textSize="8pt"
-                android:text="Rotor Resistance:"/>
+                android:text="Rotor Resistance (Ω):"/>
             <EditText
                 android:id="@+id/defineR2"
                 android:layout_height="wrap_content"
@@ -85,7 +85,7 @@ android:scrollbarSize="4dp">
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
                 android:textSize="8pt"
-                android:text="Rotor Reactance:"/>
+                android:text="Rotor Reactance (Ω):"/>
             <EditText
                 android:id="@+id/defineX2"
                 android:layout_height="wrap_content"
@@ -97,7 +97,7 @@ android:scrollbarSize="4dp">
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
                 android:textSize="8pt"
-                android:text="Magnetic Reactance:"/>
+                android:text="Magnetic Reactance (Ω):"/>
             <EditText
                 android:id="@+id/defineXm"
                 android:layout_height="wrap_content"
@@ -113,6 +113,7 @@ android:scrollbarSize="4dp">
             android:textColor="@android:color/white"
             android:backgroundTint="@color/colorPrimary"
             android:text="Define Circuits"
-            android:layout_centerInParent="true" />
+            android:layout_centerInParent="true"
+            android:onClick="setEquivalentCircuit"/>
     </LinearLayout>
 </ScrollView>

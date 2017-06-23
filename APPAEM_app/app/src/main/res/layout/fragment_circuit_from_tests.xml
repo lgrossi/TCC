@@ -37,7 +37,7 @@ android:scrollbarSize="4dp">
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
                 android:textSize="8pt"
-                android:text="No Load Power:"/>
+                android:text="No Load Power (W):"/>
             <EditText
                 android:id="@+id/defineP0"
                 android:layout_height="wrap_content"
@@ -49,7 +49,7 @@ android:scrollbarSize="4dp">
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
                 android:textSize="8pt"
-                android:text="No Load Current:"/>
+                android:text="No Load Current (A):"/>
             <EditText
                 android:id="@+id/defineI0"
                 android:layout_height="wrap_content"
@@ -61,7 +61,7 @@ android:scrollbarSize="4dp">
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
                 android:textSize="8pt"
-                android:text="No Load Voltage:"/>
+                android:text="No Load Voltage (V):"/>
             <EditText
                 android:id="@+id/defineV0"
                 android:layout_height="wrap_content"
@@ -73,7 +73,7 @@ android:scrollbarSize="4dp">
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
                 android:textSize="8pt"
-                android:text="Blocked Rotor Power:"/>
+                android:text="Blocked Rotor Power (W):"/>
             <EditText
                 android:id="@+id/definePbl"
                 android:layout_height="wrap_content"
@@ -85,7 +85,7 @@ android:scrollbarSize="4dp">
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
                 android:textSize="8pt"
-                android:text="Blocked Rotor Current:"/>
+                android:text="Blocked Rotor Current (A):"/>
             <EditText
                 android:id="@+id/defineIbl"
                 android:layout_height="wrap_content"
@@ -97,7 +97,7 @@ android:scrollbarSize="4dp">
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
                 android:textSize="8pt"
-                android:text="Blocked Rotor Voltage:"/>
+                android:text="Blocked Rotor Voltage (V):"/>
             <EditText
                 android:id="@+id/defineVbl"
                 android:layout_height="wrap_content"
@@ -109,9 +109,9 @@ android:scrollbarSize="4dp">
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
                 android:textSize="8pt"
-                android:text="Stator Resistance:"/>
+                android:text="Stator Resistance (Ω):"/>
             <EditText
-                android:id="@+id/defineX1_2"
+                android:id="@+id/defineR1_2"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:inputType="text"/>
@@ -125,6 +125,7 @@ android:scrollbarSize="4dp">
             android:textColor="@android:color/white"
             android:backgroundTint="@color/colorPrimary"
             android:text="Define Circuits"
-            android:layout_centerInParent="true" />
+            android:layout_centerInParent="true"
+            android:onClick="setEquivalentCircuit"/>
     </LinearLayout>
 </ScrollView>

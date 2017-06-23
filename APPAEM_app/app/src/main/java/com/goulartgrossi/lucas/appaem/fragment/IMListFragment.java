@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import com.goulartgrossi.lucas.appaem.R;
+import com.goulartgrossi.lucas.appaem.activity.MainActivity;
 import com.goulartgrossi.lucas.appaem.other.InductionMachineDao;
 import com.goulartgrossi.lucas.appaem.other.LayoutManager;
 
@@ -37,6 +38,8 @@ public class IMListFragment extends ListFragment implements OnItemClickListener 
         super.onActivityCreated(savedInstanceState);
         ArrayAdapter adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, titleList);
 
+        //new InductionMachineDao(getActivity()).deleteAll();
+
         imList = new InductionMachineDao(getActivity()).readInductionMachineFromDB();
 
         int count = 1;
@@ -55,6 +58,7 @@ public class IMListFragment extends ListFragment implements OnItemClickListener 
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Toast.makeText(getActivity(), imList.get(position).getName() + " Clicked!", Toast.LENGTH_SHORT).show();
 
+        ((MainActivity) this.getActivity()).setInductionMachine(this.imList.get(position));
         LayoutManager.changeFragment(IMDetailFragment.newInstance(imList.get(position)), LayoutManager.TAG_IMDETAIL, getActivity());
     }
 }

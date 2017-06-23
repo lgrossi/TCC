@@ -61,6 +61,10 @@ public class CircuitDao extends SQLiteOpenHelper {
         values.put(CIRCUIT_COLUMN_RESISTANCE, circuit.getResistance());
         values.put(CIRCUIT_COLUMN_REACTANCE, circuit.getReactance());
 
+        if (circuit.getId() != null) {
+            return database.update(CIRCUIT_TABLE_NAME, values, "_id="+circuit.getId(), null);
+        }
+
         return database.insert(CIRCUIT_TABLE_NAME, null, values);
     }
 

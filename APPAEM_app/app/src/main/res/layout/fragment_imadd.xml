@@ -99,7 +99,7 @@
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
             android:textSize="8pt"
-            android:text="Frequency:"/>
+            android:text="Frequency (Hz):"/>
         <EditText
             android:id="@+id/addFrequency"
             android:layout_height="wrap_content"

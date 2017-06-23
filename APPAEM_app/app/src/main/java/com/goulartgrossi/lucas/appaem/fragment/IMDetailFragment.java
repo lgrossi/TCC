@@ -5,9 +5,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.goulartgrossi.lucas.appaem.R;
+import com.goulartgrossi.lucas.appaem.activity.MainActivity;
 import com.goulartgrossi.lucas.appaem.other.InductionMachineDao;
 
 import appaem.InductionMachine;
@@ -74,6 +77,33 @@ public class IMDetailFragment extends Fragment {
             textView = (TextView) view.findViewById(R.id.IMDetailThReactance);
             textView.setText(generateLabelText(manager.calculateXth(), "Ω"));
         }
+
+        Spinner spinner = (Spinner) view.findViewById(R.id.circuitSpinner);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                switch (parent.getId()) {
+                    default:
+                    case R.id.circuitSpinner:
+                        String selectedItem = parent.getSelectedItem().toString();
+                        if (selectedItem.equals(getResources().getString(R.string.from_circuit)))
+                            ((MainActivity) IMDetailFragment.this.getActivity()).setCircuitType(0);
+                        else if (selectedItem.equals(getResources().getString(R.string.from_tests))) {
+                            ((MainActivity) IMDetailFragment.this.getActivity()).setCircuitType(1);
+                        } else if (selectedItem.equals(getResources().getString(R.string.from_catalog))) {
+                            ((MainActivity) IMDetailFragment.this.getActivity()).setCircuitType(2);
+                        }
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                //dummy
+            }
+
+        });
 
         return view;
     }

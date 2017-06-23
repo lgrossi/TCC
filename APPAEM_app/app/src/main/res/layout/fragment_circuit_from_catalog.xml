@@ -49,7 +49,7 @@ android:scrollbarSize="4dp">
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
                 android:textSize="8pt"
-                android:text="Nominal Current:"/>
+                android:text="Nominal Current (A):"/>
             <EditText
                 android:id="@+id/defineIn"
                 android:layout_height="wrap_content"
@@ -61,7 +61,7 @@ android:scrollbarSize="4dp">
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
                 android:textSize="8pt"
-                android:text="Synchronous Angular Speed:"/>
+                android:text="Synchronous Angular Speed (rad/s):"/>
             <EditText
                 android:id="@+id/defineWs"
                 android:layout_height="wrap_content"
@@ -73,7 +73,7 @@ android:scrollbarSize="4dp">
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
                 android:textSize="8pt"
-                android:text="Nominal Torque:"/>
+                android:text="Nominal Torque (N):"/>
             <EditText
                 android:id="@+id/defineTn"
                 android:layout_height="wrap_content"
@@ -97,7 +97,7 @@ android:scrollbarSize="4dp">
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
                 android:textSize="8pt"
-                android:text="Phase Voltage:"/>
+                android:text="Phase Voltage (V):"/>
             <EditText
                 android:id="@+id/defineV1_2"
                 android:layout_height="wrap_content"
@@ -109,7 +109,7 @@ android:scrollbarSize="4dp">
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
                 android:textSize="8pt"
-                android:text="Torque Max:"/>
+                android:text="Torque Max (N):"/>
             <EditText
                 android:id="@+id/defineTmax"
                 android:layout_height="wrap_content"
@@ -125,6 +125,7 @@ android:scrollbarSize="4dp">
             android:textColor="@android:color/white"
             android:backgroundTint="@color/colorPrimary"
             android:text="Define Circuits"
-            android:layout_centerInParent="true" />
+            android:layout_centerInParent="true"
+            android:onClick="setEquivalentCircuit"/>
     </LinearLayout>
 </ScrollView>

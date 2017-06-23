@@ -2,16 +2,15 @@ package com.goulartgrossi.lucas.appaem.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.support.v4.app.Fragment;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -31,15 +30,18 @@ import com.goulartgrossi.lucas.appaem.other.LayoutManager;
 
 import java.util.List;
 
-import appaem.ElectricalMachine;
+import appaem.BasicCircuit;
 import appaem.Graph;
+import appaem.IMEquivalentCircuitManager;
 import appaem.InductionMachine;
+import appaem.Pair;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     // tags used to attach the fragments
     public static String CURRENT_TAG = LayoutManager.TAG_IMLIST;
     private Integer circuitType = 0;
+    private InductionMachine inductionMachine;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,16 +90,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
-        List<Fragment> fragments = getSupportFragmentManager().getFragments();
-        if (fragments.size() > 1) {
-            Fragment fragment = fragments.get(getSupportFragmentManager().getFragments().size() - 2);
-            LayoutManager.setFABs(this, fragment.getTag(), fragment);
-        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+            List<Fragment> fragments = getSupportFragmentManager().getFragments();
+
+            for (int i = fragments.size() - 2; i >= 0; i--) {
+                Fragment fragment = fragments.get(i);
+                if (fragment != null && fragment.isVisible()) {
+                    LayoutManager.setFABs(this, fragment.getTag(), fragment);
+                    break;
+                }
+            }
         }
     }
 
@@ -155,22 +161,69 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void defineEquivalentCircuit (View v){
-        Toast.makeText(this, circuitType, Toast.LENGTH_LONG).show();
+        switch (this.circuitType) {
+            default:
+            case 0:
+                LayoutManager.changeFragment(new DefineEquivalentCircuitFragment(), LayoutManager.TAG_IM_DEC, this);
+                break;
+            case 1:
+                LayoutManager.changeFragment(new CircuitFromTestsFragment(), LayoutManager.TAG_IM_DEC, this);
+                break;
+            case 2:
+                LayoutManager.changeFragment(new CircuitFromCatalogFragment(), LayoutManager.TAG_IM_DEC, this);
+                break;
+        }
     }
 
-    public void getCircuitFromTests (View v){
-        LayoutManager.changeFragment(new CircuitFromTestsFragment(), LayoutManager.TAG_IM_DEC, MainActivity.this);
-        circuitType = 1;
-    }
+    public void setEquivalentCircuit (View v) {
+        switch (this.circuitType) {
+            default:
+            case 0:
+                Double v1 = Double.parseDouble(((EditText) findViewById(R.id.defineV1)).getText().toString()),
+                        r1 = Double.parseDouble(((EditText) findViewById(R.id.defineR1)).getText().toString()),
+                        x1 = Double.parseDouble(((EditText) findViewById(R.id.defineX1)).getText().toString()),
+                        r2 = Double.parseDouble(((EditText) findViewById(R.id.defineR2)).getText().toString()),
+                        x2 = Double.parseDouble(((EditText) findViewById(R.id.defineX2)).getText().toString()),
+                        xm = Double.parseDouble(((EditText) findViewById(R.id.defineXm)).getText().toString());
 
-    public void getCircuitFromCatalog (View v){
-        LayoutManager.changeFragment(new CircuitFromCatalogFragment(), LayoutManager.TAG_IM_DEC, MainActivity.this);
-        circuitType = 2;
-    }
+                inductionMachine.setStator(new BasicCircuit(v1, null, r1, x1));
+                inductionMachine.setRotor(new BasicCircuit(null, null, r2, x2));
+                inductionMachine.setXMagnetic(xm);
+                break;
+            case 1:
+                Double p0 = Double.parseDouble(((EditText) findViewById(R.id.defineP0)).getText().toString()),
+                        i0 = Double.parseDouble(((EditText) findViewById(R.id.defineI0)).getText().toString()),
+                        v0 = Double.parseDouble(((EditText) findViewById(R.id.defineV0)).getText().toString()),
+                        pBl = Double.parseDouble(((EditText) findViewById(R.id.definePbl)).getText().toString()),
+                        iBl = Double.parseDouble(((EditText) findViewById(R.id.defineIbl)).getText().toString()),
+                        vBl = Double.parseDouble(((EditText) findViewById(R.id.defineVbl)).getText().toString()),
+                        r1_2 = Double.parseDouble(((EditText) findViewById(R.id.defineR1_2)).getText().toString());
 
-    public void insertCircuits (View v){
-        LayoutManager.changeFragment(new DefineEquivalentCircuitFragment(), LayoutManager.TAG_IM_DEC, MainActivity.this);
-        circuitType = 0;
+                Pair<Double,BasicCircuit> resultsFromTests = new IMEquivalentCircuitManager().calculateEquivalentCircuitFromTests(p0, i0, v0, pBl, iBl, vBl, r1_2);
+
+                inductionMachine.setStator(new BasicCircuit(v0/Math.sqrt(3), null, r1_2, resultsFromTests.getElement1().getReactance()));
+                inductionMachine.setRotor(new BasicCircuit(resultsFromTests.getElement1()));
+                inductionMachine.setXMagnetic(resultsFromTests.getElement0());
+                break;
+            case 2:
+                Double pF = Double.parseDouble(((EditText) findViewById(R.id.definePF)).getText().toString()),
+                        iN = Double.parseDouble(((EditText) findViewById(R.id.defineIn)).getText().toString()),
+                        wS = Double.parseDouble(((EditText) findViewById(R.id.defineWs)).getText().toString()),
+                        tN = Double.parseDouble(((EditText) findViewById(R.id.defineTn)).getText().toString()),
+                        sN = Double.parseDouble(((EditText) findViewById(R.id.defineSn)).getText().toString()),
+                        v1_2 = Double.parseDouble(((EditText) findViewById(R.id.defineV1_2)).getText().toString()),
+                        tMax = Double.parseDouble(((EditText) findViewById(R.id.defineTmax)).getText().toString());
+
+                Pair<Double, BasicCircuit> resultsFromCatalog = new IMEquivalentCircuitManager().calculateEquivalentCircuitFromCatalog(pF, iN, wS, tN, sN, v1_2, tMax, 1.0);
+
+                inductionMachine.setStator(new BasicCircuit(v1_2, null, 0.0, resultsFromCatalog.getElement1().getReactance()));
+                inductionMachine.setRotor(new BasicCircuit(resultsFromCatalog.getElement1()));
+                inductionMachine.setXMagnetic(resultsFromCatalog.getElement0());
+                break;
+        }
+
+        new InductionMachineDao(this).saveInductionMachineToDB(this.inductionMachine);
+        LayoutManager.changeFragment(IMDetailFragment.newInstance(this.inductionMachine), LayoutManager.TAG_IMDETAIL, this);
     }
 
     public void createNewMachine(View view) {
@@ -211,7 +264,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             return;
         }
 
-        InductionMachine machine = new InductionMachine(Integer.parseInt(nPoles), Integer.parseInt(frequency));
+        InductionMachine machine = new InductionMachine(Integer.parseInt(frequency), Integer.parseInt(nPoles));
         machine.setName(name);
         machine.setYear(year);
         machine.setManufacturer(manufacturer);
@@ -224,7 +277,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Toast.makeText(this, "Error on create Induction Machine!", Toast.LENGTH_LONG).show();
         }else {
             Toast.makeText(this, "Machine Successfully created!", Toast.LENGTH_LONG).show();
-            LayoutManager.changeFragment(new IMListFragment(), CURRENT_TAG, this, true);
+            LayoutManager.changeFragment(new IMListFragment(), LayoutManager.TAG_IMLIST, this);
         }
+    }
+
+    public void setInductionMachine(InductionMachine machine) {
+        this.inductionMachine = machine;
+    }
+
+    public void setCircuitType(Integer i) {
+        this.circuitType = i;
     }
 }

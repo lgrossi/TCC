@@ -93,6 +93,17 @@ public class InductionMachineDao extends SQLiteOpenHelper {
         values.put(IM_COLUMN_POLES, machine.getnPoles());
         values.put(IM_COLUMN_XMAGNETIC, machine.getXMagnetic());
 
+        if(machine.getStator() != null) {
+            values.put(IM_COLUMN_STATOR_ID, this.circuitDao.saveCircuitToDB(machine.getStator()));
+        }
+        if(machine.getRotor() != null) {
+            values.put(IM_COLUMN_ROTOR_ID, this.circuitDao.saveCircuitToDB(machine.getRotor()));
+        }
+
+        if (machine.getId() != null) {
+            return database.update(IM_TABLE_NAME, values, "_id="+machine.getId(), null);
+        }
+
         return database.insert(IM_TABLE_NAME, null, values);
     }
 

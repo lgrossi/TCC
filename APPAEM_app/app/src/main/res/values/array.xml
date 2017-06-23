@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="circuitSpinnerItems">
+        <item>@string/from_circuit</item>
+        <item>@string/from_tests</item>
+        <item>@string/from_catalog</item>
+    </string-array>
+    <string-array name="curvesSpinnerItems">
+        <item>Torque x Speed Profiling</item>
+        <item>Power Factor x Speed Profiling</item>
+        <item>Stator Current x Speed Profiling</item>
+        <item>Efficiency x Speed Profiling</item>
+    </string-array>
+</resources>

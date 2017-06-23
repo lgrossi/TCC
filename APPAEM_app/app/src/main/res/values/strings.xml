@@ -36,6 +36,10 @@
     <string name="hello_blank_fragment4">Hello blank fragment4</string>
     <string name="title_activity_about_us">AboutUsActivity</string>
 
+    <string name="from_circuit">From Circuit</string>
+    <string name="from_tests">From Tests</string>
+    <string name="from_catalog">From Catalog</string>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 

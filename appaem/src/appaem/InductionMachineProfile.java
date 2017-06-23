@@ -33,13 +33,13 @@ public class InductionMachineProfile  extends ApplicationFrame {
 
 	public static void main(final String[] args) {	
 
-		InductionMachine machine = new InductionMachine(60, 4, new BasicCircuit(220.0, null, 2.4, 2.146), new BasicCircuit(null, null, 1.793, 2.146), 53.45);
+		InductionMachine machine = new InductionMachine(60, 4, new BasicCircuit(127.0, null, 1.71, 2.36), new BasicCircuit(null, null, 1.42, 2.36), 53.55);
 		final InductionMachineProfile demo = new InductionMachineProfile(new Graph(GraphType.TorqueSpeedProfiling, "Torque x Speed Profiling", "Speed", "Torque", 0.0, 1800.0, 0.1),  new InductionMachineManager(machine));
 	    final InductionMachineProfile demo2 = new InductionMachineProfile(new Graph(GraphType.PowerFactorSpeedProfiling, "Power Factor x Speed Profiling", "Speed", "Power Factor", 0.0, 1800.0, 0.1),  new InductionMachineManager(machine));
 	    final InductionMachineProfile demo3 = new InductionMachineProfile(new Graph(GraphType.StatorCurrentSpeedProfiling, "Stator Current x Speed Profiling", "Speed", "Stator Current", 0.0, 1800.0, 0.1),  new InductionMachineManager(machine));
 	    final InductionMachineProfile demo4 = new InductionMachineProfile(new Graph(GraphType.EfficiencySpeedProfiling, "Efficiency x Speed Profiling", "Speed", "Efficiency", 0.0, 1800.1, 0.1),  new InductionMachineManager(machine));
 	    
-		machine = new InductionMachine(60, 4, new BasicCircuit(220.0, null, 3.3, 2.146), new BasicCircuit(null, null, 1.793, 2.146), 52.45);
+		machine = new InductionMachine(60, 4, new BasicCircuit(127.02, null,0.0, 2.36), new BasicCircuit(null, null, 1.29, 2.36), 32.88);
 		final InductionMachineProfile demox = new InductionMachineProfile(new Graph(GraphType.TorqueSpeedProfiling, "Torque2 x Speed Profiling", "Speed", "Torque", 0.0, 1800.0, 0.1),  new InductionMachineManager(machine));
 	    final InductionMachineProfile demo2x = new InductionMachineProfile(new Graph(GraphType.PowerFactorSpeedProfiling, "Power Factor x Speed Profiling", "Speed", "Power Factor", 0.0, 1800.0, 0.1),  new InductionMachineManager(machine));
 	    final InductionMachineProfile demo3x = new InductionMachineProfile(new Graph(GraphType.StatorCurrentSpeedProfiling, "Stator Current x Speed Profiling", "Speed", "Stator Current", 0.0, 1800.0, 0.1),  new InductionMachineManager(machine));
@@ -70,6 +70,5 @@ public class InductionMachineProfile  extends ApplicationFrame {
 	    demo4x.pack();
 	    RefineryUtilities.centerFrameOnScreen(demo4x);
 	    demo4x.setVisible(true);
-	    System.out.println(new InductionMachineManager(machine).calculateMaximumTorque());
 	}
 }
