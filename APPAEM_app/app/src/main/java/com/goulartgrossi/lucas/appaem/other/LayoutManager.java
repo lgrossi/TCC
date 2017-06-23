@@ -20,10 +20,15 @@ public class LayoutManager {
     public static final String TAG_ABOUT = "About Us";
     public static final String TAG_FEEDBACK = "Feedback";
     public static final String TAG_SETTINGS = "Settings";
+    public static final String TAG_IM_DEC = "IM Define Equivalent Circuit";
     public static final String TAG_IMDETAIL = "Detail Induction Machine";
     public static final String TAG_IMCURVES = "IM Characteristic Curves";
 
     public static void changeFragment (Fragment fragment, String tag, FragmentActivity activity) {
+        LayoutManager.changeFragment(fragment, tag, activity, false);
+    }
+
+    public static void changeFragment (Fragment fragment, String tag, FragmentActivity activity, Boolean avoidBackStack) {
         activity.setTitle(tag);
 
         if (tag == TAG_IMLIST) {
@@ -46,6 +51,8 @@ public class LayoutManager {
 
         FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame, fragment, tag);
+        if (!avoidBackStack)
+            transaction.addToBackStack(null);
         transaction.commit();
 
         DrawerLayout drawer = (DrawerLayout) activity.findViewById(R.id.drawer_layout);

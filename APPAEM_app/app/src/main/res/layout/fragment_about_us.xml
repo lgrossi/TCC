@@ -1,20 +1,24 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="30px"
     tools:context="com.goulartgrossi.lucas.appaem.fragment.AboutUsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/about_us" />
-    <TextView
-        android:id="@+id/texatView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/about_us" />
+    <ScrollView
+        android:id="@+id/ScrollView01"
+        android:layout_margin="30px"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="a"
+            />
 
-</FrameLayout>
+    </ScrollView>
+
+</LinearLayout>

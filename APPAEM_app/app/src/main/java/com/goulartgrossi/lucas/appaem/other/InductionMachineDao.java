@@ -93,9 +93,6 @@ public class InductionMachineDao extends SQLiteOpenHelper {
         values.put(IM_COLUMN_POLES, machine.getnPoles());
         values.put(IM_COLUMN_XMAGNETIC, machine.getXMagnetic());
 
-        values.put(IM_COLUMN_STATOR_ID, circuitDao.saveCircuitToDB(machine.getStator()));
-        values.put(IM_COLUMN_ROTOR_ID, circuitDao.saveCircuitToDB(machine.getRotor()));
-
         return database.insert(IM_TABLE_NAME, null, values);
     }
 
@@ -136,8 +133,6 @@ public class InductionMachineDao extends SQLiteOpenHelper {
                         circuitDao.readCircuitFromDB(cursor.getLong(cursor.getColumnIndex(IM_COLUMN_STATOR_ID))),
                         circuitDao.readCircuitFromDB(cursor.getLong(cursor.getColumnIndex(IM_COLUMN_ROTOR_ID))),
                         cursor.getDouble(cursor.getColumnIndex(IM_COLUMN_XMAGNETIC)));
-
-                //machine.setCatalogData(catalogDataDao.readCatalogDataFromDB(cursor.getLong(cursor.getColumnIndex(IM_COLUMN_CD_ID))));
 
                 machine.defineBasicMachineData(cursor.getLong(cursor.getColumnIndex(IM_COLUMN_ID)),
                         cursor.getString(cursor.getColumnIndex(IM_COLUMN_NAME)),

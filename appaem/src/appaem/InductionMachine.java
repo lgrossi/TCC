@@ -5,7 +5,7 @@ public class InductionMachine extends ElectricalMachine {
 	private Integer frequency;
 	/** Número de Polos. */
 	private Integer nPoles;
-	
+
 	/** Reatância de magnetização. */
 	private Double xMagnetic;
 
@@ -13,9 +13,9 @@ public class InductionMachine extends ElectricalMachine {
 	private BasicCircuit stator;
 	/** Circuito rotor. */
 	private BasicCircuit rotor;
-	/** Dados de placa*/
+	/** Dados de placa */
 	private CatalogData catalogData;
-	
+
 	public InductionMachine(InductionMachine machine) {
 		this.frequency = machine.getFrequency();
 		this.nPoles = machine.getnPoles();
@@ -23,52 +23,62 @@ public class InductionMachine extends ElectricalMachine {
 		this.rotor = new BasicCircuit(machine.getRotor());
 		this.xMagnetic = machine.getXMagnetic();
 	}
-	
-	public InductionMachine(Integer frequency, Integer nPoles, BasicCircuit stator, BasicCircuit rotor, Double xMagnetic) {
+
+	public InductionMachine(Integer frequency, Integer nPoles) {
+		this.frequency = frequency;
+		this.nPoles = nPoles;
+		this.xMagnetic = xMagnetic;
+	}
+
+	public InductionMachine(Integer frequency, Integer nPoles, BasicCircuit stator, BasicCircuit rotor,
+			Double xMagnetic) {
 		this.frequency = frequency;
 		this.nPoles = nPoles;
 		this.stator = stator;
 		this.rotor = rotor;
 		this.xMagnetic = xMagnetic;
 	}
-	
+
 	/**
 	 * @return this.the frequency
 	 */
 	public Integer getFrequency() {
 		return this.frequency;
 	}
-	
+
 	/**
-	 * @param frequency the frequency to set
+	 * @param frequency
+	 *            the frequency to set
 	 */
 	public void setFrequency(Integer frequency) {
 		this.frequency = frequency;
 	}
-	
+
 	/**
 	 * @return the nPoles
 	 */
 	public Integer getnPoles() {
 		return this.nPoles;
 	}
-	
+
 	/**
-	 * @param nPoles the nPoles to set
+	 * @param nPoles
+	 *            the nPoles to set
 	 */
 	public void setnPoles(Integer nPoles) {
 		this.nPoles = nPoles;
 	}
-	
+
 	/**
 	 * @return this.the xMagnetic
 	 */
 	public Double getXMagnetic() {
 		return this.xMagnetic;
 	}
-	
+
 	/**
-	 * @param xMagnetic the xMagnetic to set
+	 * @param xMagnetic
+	 *            the xMagnetic to set
 	 */
 	public void setXMagnetic(Double xMagnetic) {
 		this.xMagnetic = xMagnetic;
@@ -82,7 +92,8 @@ public class InductionMachine extends ElectricalMachine {
 	}
 
 	/**
-	 * @param stator the stator to set
+	 * @param stator
+	 *            the stator to set
 	 */
 	public void setStator(BasicCircuit stator) {
 		this.stator = stator;
@@ -96,17 +107,16 @@ public class InductionMachine extends ElectricalMachine {
 	}
 
 	/**
-	 * @param rotor the rotor to set
+	 * @param rotor
+	 *            the rotor to set
 	 */
 	public void setRotor(BasicCircuit rotor) {
 		this.rotor = rotor;
 	}
 
-
 	public CatalogData getCatalogData() {
 		return catalogData;
 	}
-
 
 	public void setCatalogData(CatalogData catalogData) {
 		this.catalogData = catalogData;

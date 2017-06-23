@@ -1,13 +1,61 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="30px"
     tools:context="com.goulartgrossi.lucas.appaem.fragment.FeedbackFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:textSize="8pt"
+        android:text="E-mail:"/>
+    <EditText
+        android:id="@+id/email"
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/feedback" />
+        android:hint="Insert your e-mail"
+        android:inputType="text"/>
 
-</FrameLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:textSize="8pt"
+        android:text="Subject:"/>
+    <EditText
+        android:id="@+id/emailSubject"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:hint="Insert the subject"
+        android:inputType="text"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:textSize="8pt"
+        android:text="Content:"/>
+    <EditText
+        android:id="@+id/emailBody"
+        android:layout_width="fill_parent"
+        android:hint="Insert your feedback here"
+        android:layout_height="wrap_content"
+        android:gravity="top|left"
+        android:inputType="textEmailAddress|textMultiLine"
+        android:lines="20"
+        android:minLines="10"
+        android:scrollHorizontally="true"
+        android:scrollbars="vertical" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Send"
+        android:layout_centerInParent="true"
+        />
+
+</LinearLayout>

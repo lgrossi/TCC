@@ -41,29 +41,39 @@ public class IMDetailFragment extends Fragment {
         textView = (TextView) view.findViewById(R.id.IMDetailFrequency);
         textView.setText(generateLabelText(this.inductionMachine.getFrequency(), "Hz"));
         textView = (TextView) view.findViewById(R.id.IMDetailMReactance);
-        textView.setText(generateLabelText(this.inductionMachine.getXMagnetic().doubleValue(), "Ω"));
+        Double xM = this.inductionMachine.getXMagnetic();
+        textView.setText(generateLabelText(xM == 0.0 ? null : xM, "Ω"));
 
-        textView = (TextView) view.findViewById(R.id.IMDetailStatorVoltage);
-        textView.setText(generateLabelText(this.inductionMachine.getStator().getVoltage(), "V"));
-        textView = (TextView) view.findViewById(R.id.IMDetailStatorResistance);
-        textView.setText(generateLabelText(this.inductionMachine.getStator().getResistance(), "Ω"));
-        textView = (TextView) view.findViewById(R.id.IMDetailStatorReactance);
-        textView.setText(generateLabelText(this.inductionMachine.getStator().getReactance(), "Ω"));
+        if (this.inductionMachine.getStator() == null) {
+            view.findViewById(R.id.statorLabel).setVisibility(View.GONE);
+            view.findViewById(R.id.statorSection).setVisibility(View.GONE);
+            view.findViewById(R.id.rotorLabel).setVisibility(View.GONE);
+            view.findViewById(R.id.rotorSection).setVisibility(View.GONE);
+            view.findViewById(R.id.thLabel).setVisibility(View.GONE);
+            view.findViewById(R.id.thSection).setVisibility(View.GONE);
+        } else {
+            textView = (TextView) view.findViewById(R.id.IMDetailStatorVoltage);
+            textView.setText(generateLabelText(this.inductionMachine.getStator().getVoltage(), "V"));
+            textView = (TextView) view.findViewById(R.id.IMDetailStatorResistance);
+            textView.setText(generateLabelText(this.inductionMachine.getStator().getResistance(), "Ω"));
+            textView = (TextView) view.findViewById(R.id.IMDetailStatorReactance);
+            textView.setText(generateLabelText(this.inductionMachine.getStator().getReactance(), "Ω"));
 
-        textView = (TextView) view.findViewById(R.id.IMDetailRotorVoltage);
-        textView.setText(generateLabelText(this.inductionMachine.getRotor().getVoltage(), "V"));
-        textView = (TextView) view.findViewById(R.id.IMDetailRotorResistance);
-        textView.setText(generateLabelText(this.inductionMachine.getRotor().getResistance(), "Ω"));
-        textView = (TextView) view.findViewById(R.id.IMDetailRotorReactance);
-        textView.setText(generateLabelText(this.inductionMachine.getRotor().getReactance(), "Ω"));
+            textView = (TextView) view.findViewById(R.id.IMDetailRotorVoltage);
+            textView.setText(generateLabelText(this.inductionMachine.getRotor().getVoltage(), "V"));
+            textView = (TextView) view.findViewById(R.id.IMDetailRotorResistance);
+            textView.setText(generateLabelText(this.inductionMachine.getRotor().getResistance(), "Ω"));
+            textView = (TextView) view.findViewById(R.id.IMDetailRotorReactance);
+            textView.setText(generateLabelText(this.inductionMachine.getRotor().getReactance(), "Ω"));
 
-        textView = (TextView) view.findViewById(R.id.IMDetailThVoltage);
-        InductionMachineManager manager = new InductionMachineManager(this.inductionMachine);
-        textView.setText(generateLabelText(manager.calculateVth(), "V"));
-        textView = (TextView) view.findViewById(R.id.IMDetailThResistance);
-        textView.setText(generateLabelText(manager.calculateRth(), "Ω"));
-        textView = (TextView) view.findViewById(R.id.IMDetailThReactance);
-        textView.setText(generateLabelText(manager.calculateXth(), "Ω"));
+            textView = (TextView) view.findViewById(R.id.IMDetailThVoltage);
+            InductionMachineManager manager = new InductionMachineManager(this.inductionMachine);
+            textView.setText(generateLabelText(manager.calculateVth(), "V"));
+            textView = (TextView) view.findViewById(R.id.IMDetailThResistance);
+            textView.setText(generateLabelText(manager.calculateRth(), "Ω"));
+            textView = (TextView) view.findViewById(R.id.IMDetailThReactance);
+            textView.setText(generateLabelText(manager.calculateXth(), "Ω"));
+        }
 
         return view;
     }

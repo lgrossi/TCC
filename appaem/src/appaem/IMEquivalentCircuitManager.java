@@ -2,6 +2,8 @@ package appaem;
 
 public class IMEquivalentCircuitManager {
 	
+	public static final Double KGF_TO_NEWTON = 9.81;
+	
 	public static Pair<Double, Double> calculateRAndXfromTests(Double p, Double i, Double v) {
 		Double r = p / (3* Math.pow(i, 2));
 		return new Pair<Double, Double>(r, Math.sqrt((Math.pow(v/i, 2) * 1/3 - Math.pow(r, 2))));
@@ -58,14 +60,16 @@ public class IMEquivalentCircuitManager {
 	
 	public static void main(String[] args) {
 		Pair<Double, BasicCircuit> circuitsFromTest = IMEquivalentCircuitManager.calculateEquivalentCircuitFromTests(210.0, 8.01, 222.5, 322.0, 10.75, 40.05, 0.395);
-		//Double wS = 188.5, kTh = 1.0, iN = 4.32, tN = 6.18, sN = 0.0556, v1 = 127.0, pf100 = 0.82, tMax = 17.3, r2 = 1.793, xm = 53.55, x1 = 2.146;
-		Double wS = 188.5, kTh = 1.0, iN = 14.0, tN = 20.5, sN = 0.0472, v1 = 127.0, pf100 = 0.81, tMax = 63.54;
+		//Double wS = 377.5, kTh = 1.0, iN = 5.85, tN = 8.036, sN = 0.0367, v1 = 440.0, pf100 = 0.8, tMax = 23.06, r2 = 5.4, xm = 227.0, x1 = 14.195;
+		//Double wS = 188.5, kTh = 1.0, iN = 8.70, tN = 1.2*9.806, sN = 0.044, v1 = 127.0, pf100 = 0.85, tMax = 2.8*1.5*9.806, r2 = 0.853, xm = 29.17, x1 = 1.42;
+		Double wS = 188.5, kTh = 1.0, iN = 6.12, tN = 0.82*9.81, sN = 0.0466, v1 = 127.0, pf100 = 0.78, tMax = 0.82*9.81*3.0, r2 = 1.42, xm = 53.55, x1 = 2.36;
+		//Double wS = 188.5, kTh = 1.0, iN = 14.0, tN = 20.5, sN = 0.0472, v1 = 127.0, pf100 = 0.81, tMax = 63.54, r2 = 0.535, xm = 15.02, x1 = 0.97;
 		
 		Pair<Double, BasicCircuit> fromCatalog = IMEquivalentCircuitManager.calculateEquivalentCircuitFromCatalog(pf100, iN, wS, tN, sN, v1, tMax, kTh, 0.0);
 		
-		System.out.println(fromCatalog.getElement1().getResistance() + " / " + circuitsFromTest.getElement1().getResistance() + " = " + Math.abs(1 - fromCatalog.getElement1().getResistance() / circuitsFromTest.getElement1().getResistance()) * 100 + "%");
-		System.out.println(fromCatalog.getElement1().getReactance() + " / " + circuitsFromTest.getElement1().getReactance() + " = " + Math.abs(1 - fromCatalog.getElement1().getReactance() / circuitsFromTest.getElement1().getReactance()) * 100 + "%");
-		System.out.println(fromCatalog.getElement0() + " / " + circuitsFromTest.getElement0() + " = " + Math.abs(1 - fromCatalog.getElement0() / circuitsFromTest.getElement0()) * 100 + "%");
+		System.out.println(fromCatalog.getElement1().getResistance() + " / " + r2 + " = " + Math.abs(1 - fromCatalog.getElement1().getResistance() / r2) * 100 + "%");
+		System.out.println(fromCatalog.getElement1().getReactance() + " / " + x1 + " = " + Math.abs(1 - fromCatalog.getElement1().getReactance() / x1) * 100 + "%");
+		System.out.println(fromCatalog.getElement0() + " / " + xm + " = " + Math.abs(1 - fromCatalog.getElement0() / xm) * 100 + "%");
 	}
 	
 	

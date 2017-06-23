@@ -1,13 +1,133 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.goulartgrossi.lucas.appaem.fragment.IMAddFragment"
+    android:id="@+id/DetailScrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.goulartgrossi.lucas.appaem.fragment.IMAddFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    android:layout_alignParentBottom="true"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentRight="true"
+    android:scrollbars="vertical"
+    android:fillViewport="true"
+    android:scrollbarSize="4dp">
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/add_new" />
+        android:orientation="vertical"
+        android:layout_margin="30px">
 
-</FrameLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="8pt"
+            android:text="Name:"/>
+        <EditText
+            android:id="@+id/addName"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:inputType="text"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="8pt"
+            android:text="Year:"/>
+        <EditText
+            android:id="@+id/addYear"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:inputType="text"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="8pt"
+            android:text="Manufacturer:"/>
+        <EditText
+            android:id="@+id/addManufacturer"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:inputType="text"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="8pt"
+            android:text="Model:"/>
+        <EditText
+            android:id="@+id/addModel"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:inputType="text"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="8pt"
+            android:text="Description:"/>
+        <EditText
+            android:id="@+id/addDescription"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top|left"
+            android:inputType="textEmailAddress|textMultiLine"
+            android:lines="10"
+            android:minLines="1"
+            android:scrollHorizontally="true"
+            android:scrollbars="vertical" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="8pt"
+            android:text="Number of Poles:"/>
+        <EditText
+            android:id="@+id/addNpoles"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:inputType="text"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="8pt"
+            android:text="Frequency:"/>
+        <EditText
+            android:id="@+id/addFrequency"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:inputType="text"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="8pt"
+            android:text="Magnetic Reactance:"/>
+        <EditText
+            android:id="@+id/addMagneticReactance"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:inputType="text"/>
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10pt"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="Add"
+            android:layout_centerInParent="true"
+            android:onClick="createNewMachine"
+            />
+
+    </LinearLayout>
+</ScrollView>

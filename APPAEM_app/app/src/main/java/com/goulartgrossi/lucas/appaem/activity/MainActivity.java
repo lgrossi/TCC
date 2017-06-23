@@ -12,18 +12,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.support.v4.app.Fragment;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.goulartgrossi.lucas.appaem.R;
 import com.goulartgrossi.lucas.appaem.fragment.AboutUsFragment;
+import com.goulartgrossi.lucas.appaem.fragment.DefineEquivalentCircuitFragment;
 import com.goulartgrossi.lucas.appaem.fragment.FeedbackFragment;
 import com.goulartgrossi.lucas.appaem.fragment.IMAddFragment;
 import com.goulartgrossi.lucas.appaem.fragment.IMCurvesFragment;
 import com.goulartgrossi.lucas.appaem.fragment.IMDetailFragment;
 import com.goulartgrossi.lucas.appaem.fragment.IMListFragment;
 import com.goulartgrossi.lucas.appaem.fragment.SettingsFragment;
+import com.goulartgrossi.lucas.appaem.other.InductionMachineDao;
 import com.goulartgrossi.lucas.appaem.other.LayoutManager;
 
+import appaem.ElectricalMachine;
 import appaem.Graph;
 import appaem.InductionMachine;
 
@@ -44,8 +48,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                LayoutManager.changeFragment(new IMAddFragment(), LayoutManager.TAG_IMADD, MainActivity.this);
             }
         });
 
@@ -53,8 +56,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                LayoutManager.changeFragment(new FeedbackFragment(), LayoutManager.TAG_FEEDBACK, MainActivity.this);
+
             }
         });
 
@@ -75,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        LayoutManager.changeFragment(new IMListFragment(), CURRENT_TAG, this);
+        LayoutManager.changeFragment(new IMListFragment(), CURRENT_TAG, this, true);
     }
 
     @Override
@@ -90,16 +93,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        /*if (id == R.id.action_settings) {
-            return true;
-        }*/
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -149,5 +142,64 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public void setToEfficiencySpeedProfilingGraph (View v){
         ((IMCurvesFragment) getSupportFragmentManager().findFragmentByTag(LayoutManager.TAG_IMCURVES)).drawGraph(Graph.GraphType.EfficiencySpeedProfiling);
+    }
+
+    public void defineEquivalentCircuit (View v){
+        LayoutManager.changeFragment(new DefineEquivalentCircuitFragment(), LayoutManager.TAG_IM_DEC, MainActivity.this);
+    }
+
+    public void createNewMachine(View view) {
+        String nPoles = ((EditText) findViewById(R.id.addNpoles)).getText().toString(),
+                frequency = ((EditText) findViewById(R.id.addFrequency)).getText().toString(),
+                name = ((EditText) findViewById(R.id.addName)).getText().toString(),
+                year = ((EditText) findViewById(R.id.addYear)).getText().toString(),
+                manufacturer = ((EditText) findViewById(R.id.addManufacturer)).getText().toString(),
+                model = ((EditText) findViewById(R.id.addModel)).getText().toString(),
+                description = ((EditText) findViewById(R.id.addDescription)).getText().toString();
+
+        if (name.equals("")) {
+            Toast.makeText(this, "You must insert 'Name' value to continue!", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (year.equals("")) {
+            Toast.makeText(this, "You must insert 'Year' value to continue!", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (manufacturer.equals("")) {
+            Toast.makeText(this, "You must insert 'Manufacturer' value to continue!", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (model.equals("")) {
+            Toast.makeText(this, "You must insert 'Model' value to continue!", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (nPoles.equals("")) {
+            Toast.makeText(this, "You must insert 'Number Of Poles' value to continue!", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (frequency.equals("")) {
+            Toast.makeText(this, "You must insert 'Frequency' value to continue!", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (description.equals("")) {
+            Toast.makeText(this, "You must insert 'Description' value to continue!", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        InductionMachine machine = new InductionMachine(Integer.parseInt(nPoles), Integer.parseInt(frequency));
+        machine.setName(name);
+        machine.setYear(year);
+        machine.setManufacturer(manufacturer);
+        machine.setModel(model);
+        machine.setDescription(description);
+        machine.setTypeId("INDUCTION_MACHINE");
+
+        long id = new InductionMachineDao(this).saveInductionMachineToDB(machine);
+        if (id == -1) {
+            Toast.makeText(this, "Error on create Induction Machine!", Toast.LENGTH_LONG).show();
+        }else {
+            Toast.makeText(this, "Machine Successfully created!", Toast.LENGTH_LONG).show();
+            LayoutManager.changeFragment(new IMListFragment(), CURRENT_TAG, this, true);
+        }
     }
 }

@@ -206,6 +206,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/statorLabel"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50px"
@@ -215,6 +216,7 @@
             android:text="Stator Circuit" />
 
         <LinearLayout
+            android:id="@+id/statorSection"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -293,6 +295,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/rotorLabel"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50px"
@@ -302,6 +305,7 @@
             android:text="Rotor Circuit" />
 
         <LinearLayout
+            android:id="@+id/rotorSection"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -380,6 +384,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/thLabel"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50px"
@@ -389,6 +394,7 @@
             android:text="Thévenin's Circuit" />
 
         <LinearLayout
+            android:id="@+id/thSection"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -466,5 +472,17 @@
                     android:layout_weight="0.346"/>
             </LinearLayout>
         </LinearLayout>
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10pt"
+            android:layout_marginBottom="10pt"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="Define Equivalent Circuit"
+            android:layout_centerInParent="true"
+            android:onClick="defineEquivalentCircuit"
+            />
     </LinearLayout>
 </ScrollView>
