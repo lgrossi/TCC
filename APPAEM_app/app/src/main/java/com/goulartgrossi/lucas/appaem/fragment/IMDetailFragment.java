@@ -90,7 +90,6 @@ public class IMDetailFragment extends Fragment {
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
-        new InductionMachineDao(getActivity()).saveInductionMachineToDB(this.inductionMachine);
         super.onActivityCreated(savedInstanceState);
     }
 

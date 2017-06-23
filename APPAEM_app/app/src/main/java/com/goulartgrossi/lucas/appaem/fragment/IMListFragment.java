@@ -18,7 +18,6 @@ import com.goulartgrossi.lucas.appaem.other.LayoutManager;
 
 import java.util.ArrayList;
 
-import appaem.BasicCircuit;
 import appaem.InductionMachine;
 
 public class IMListFragment extends ListFragment implements OnItemClickListener {
@@ -41,18 +40,12 @@ public class IMListFragment extends ListFragment implements OnItemClickListener 
         imList = new InductionMachineDao(getActivity()).readInductionMachineFromDB();
 
         int count = 1;
+        titleList.clear();
         if (imList != null)
             for (InductionMachine machine : imList) {
                 titleList.add(count + ": " + machine.getName() + " - " + machine.getModel() + " (" + machine.getYear() + ")");
                 count++;
             }
-
-        new InductionMachineDao(getActivity()).deleteAll();
-
-        InductionMachine a = new InductionMachine(60, 6, new BasicCircuit(1270.2, null, 2.8, 7.96), new BasicCircuit(null, null, 2.0, 7.96), 273.04);
-        a.defineBasicMachineData(null, "BTest Machine", "2012", "BCX-900-60HZ-12", "INDUCTION_MACHINE", "GE", "");
-
-        new InductionMachineDao(getActivity()).saveInductionMachineToDB(a);
 
         setListAdapter(adapter);
         getListView().setOnItemClickListener(this);
@@ -61,9 +54,6 @@ public class IMListFragment extends ListFragment implements OnItemClickListener 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Toast.makeText(getActivity(), imList.get(position).getName() + " Clicked!", Toast.LENGTH_SHORT).show();
-
-        //InductionMachine a = new InductionMachine(60, 6, new BasicCircuit(1270.2, null, 2.8, 7.96), new BasicCircuit(null, null, 2.0, 7.96), 273.04);
-        //a.defineBasicMachineData(null, "BTest Machine", "2012", "BCX-900-60HZ-12", "INDUCTION_MACHINE", "GE", "");
 
         LayoutManager.changeFragment(IMDetailFragment.newInstance(imList.get(position)), LayoutManager.TAG_IMDETAIL, getActivity());
     }

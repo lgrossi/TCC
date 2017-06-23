@@ -477,12 +477,32 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10pt"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="Insert Equivalent Circuit"
+            android:layout_centerInParent="true"
+            android:onClick="insertCircuits"
+            />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="Define Circuit From Tests"
+            android:layout_centerInParent="true"
+            android:onClick="getCircuitFromTests"
+            />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="10pt"
             android:textColor="@android:color/white"
             android:backgroundTint="@color/colorPrimary"
-            android:text="Define Equivalent Circuit"
+            android:text="Define Circuit From Catalog"
             android:layout_centerInParent="true"
-            android:onClick="defineEquivalentCircuit"
+            android:onClick="getCircuitFromCatalog"
             />
     </LinearLayout>
 </ScrollView>

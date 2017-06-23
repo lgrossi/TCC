@@ -9,6 +9,7 @@ import android.view.View;
 
 import com.goulartgrossi.lucas.appaem.R;
 import com.goulartgrossi.lucas.appaem.activity.MainActivity;
+import com.goulartgrossi.lucas.appaem.fragment.IMDetailFragment;
 
 /**
  * Created by Lucas Goulart Grossi on 5/31/2017.
@@ -31,23 +32,7 @@ public class LayoutManager {
     public static void changeFragment (Fragment fragment, String tag, FragmentActivity activity, Boolean avoidBackStack) {
         activity.setTitle(tag);
 
-        if (tag == TAG_IMLIST) {
-            setFABVisibility(View.VISIBLE, activity, R.id.fabAdd);
-            setFABVisibility(View.INVISIBLE, activity, R.id.fabFeedback);
-            setFABVisibility(View.INVISIBLE, activity, R.id.fabGraphs);
-        } else if (tag == TAG_ABOUT) {
-            setFABVisibility(View.INVISIBLE, activity, R.id.fabAdd);
-            setFABVisibility(View.VISIBLE, activity, R.id.fabFeedback);
-            setFABVisibility(View.INVISIBLE, activity, R.id.fabGraphs);
-        } else if (tag == TAG_IMDETAIL) {
-            setFABVisibility(View.INVISIBLE, activity, R.id.fabAdd);
-            setFABVisibility(View.INVISIBLE, activity, R.id.fabFeedback);
-            setFABVisibility(View.VISIBLE, activity, R.id.fabGraphs);
-        } else {
-            setFABVisibility(View.INVISIBLE, activity, R.id.fabAdd);
-            setFABVisibility(View.INVISIBLE, activity, R.id.fabFeedback);
-            setFABVisibility(View.INVISIBLE, activity, R.id.fabGraphs);
-        }
+        LayoutManager.setFABs(activity, tag, fragment);
 
         FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame, fragment, tag);
@@ -59,6 +44,28 @@ public class LayoutManager {
         drawer.closeDrawers();
 
         MainActivity.CURRENT_TAG = tag;
+    }
+
+    public static void setFABs(FragmentActivity activity, String tag, Fragment fragment) {
+        if (tag == TAG_IMLIST) {
+            setFABVisibility(View.VISIBLE, activity, R.id.fabAdd);
+            setFABVisibility(View.INVISIBLE, activity, R.id.fabFeedback);
+            setFABVisibility(View.INVISIBLE, activity, R.id.fabGraphs);
+        } else if (tag == TAG_ABOUT) {
+            setFABVisibility(View.INVISIBLE, activity, R.id.fabAdd);
+            setFABVisibility(View.VISIBLE, activity, R.id.fabFeedback);
+            setFABVisibility(View.INVISIBLE, activity, R.id.fabGraphs);
+        } else if (tag == TAG_IMDETAIL) {
+            if (((IMDetailFragment) fragment).getInductionMachine().getStator() != null) {
+                setFABVisibility(View.VISIBLE, activity, R.id.fabGraphs);
+            }
+            setFABVisibility(View.INVISIBLE, activity, R.id.fabAdd);
+            setFABVisibility(View.INVISIBLE, activity, R.id.fabFeedback);
+        } else {
+            setFABVisibility(View.INVISIBLE, activity, R.id.fabAdd);
+            setFABVisibility(View.INVISIBLE, activity, R.id.fabFeedback);
+            setFABVisibility(View.INVISIBLE, activity, R.id.fabGraphs);
+        }
     }
 
     private static void setFABVisibility (int visibility, FragmentActivity activity, int id) {

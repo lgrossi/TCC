@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:tools="http://schemas.android.com/tools"
-tools:context="com.goulartgrossi.lucas.appaem.fragment.DefineEquivalentCircuitFragment"
+tools:context="com.goulartgrossi.lucas.appaem.fragment.CircuitFromTestsFragment"
 android:id="@+id/DetailScrollView"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
@@ -23,10 +23,10 @@ android:scrollbarSize="4dp">
             android:textColor="@android:color/black"
             android:gravity="center"
             android:textSize="10pt"
-            android:text="Insert Circuits"/>
+            android:text="Insert Tests"/>
 
         <LinearLayout
-            android:id="@+id/insertCircuit"
+            android:id="@+id/insertTests"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -37,9 +37,69 @@ android:scrollbarSize="4dp">
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
                 android:textSize="8pt"
-                android:text="Phase Voltage:"/>
+                android:text="No Load Power:"/>
             <EditText
-                android:id="@+id/defineV1"
+                android:id="@+id/defineP0"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:inputType="text"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:textSize="8pt"
+                android:text="No Load Current:"/>
+            <EditText
+                android:id="@+id/defineI0"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:inputType="text"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:textSize="8pt"
+                android:text="No Load Voltage:"/>
+            <EditText
+                android:id="@+id/defineV0"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:inputType="text"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:textSize="8pt"
+                android:text="Blocked Rotor Power:"/>
+            <EditText
+                android:id="@+id/definePbl"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:inputType="text"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:textSize="8pt"
+                android:text="Blocked Rotor Current:"/>
+            <EditText
+                android:id="@+id/defineIbl"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:inputType="text"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:textSize="8pt"
+                android:text="Blocked Rotor Voltage:"/>
+            <EditText
+                android:id="@+id/defineVbl"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:inputType="text"/>
@@ -51,55 +111,7 @@ android:scrollbarSize="4dp">
                 android:textSize="8pt"
                 android:text="Stator Resistance:"/>
             <EditText
-                android:id="@+id/defineR1"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:inputType="text"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/black"
-                android:textSize="8pt"
-                android:text="Stator Reactance:"/>
-            <EditText
-                android:id="@+id/defineX1"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:inputType="text"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/black"
-                android:textSize="8pt"
-                android:text="Rotor Resistance:"/>
-            <EditText
-                android:id="@+id/defineR2"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:inputType="text"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/black"
-                android:textSize="8pt"
-                android:text="Rotor Reactance:"/>
-            <EditText
-                android:id="@+id/defineX2"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:inputType="text"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/black"
-                android:textSize="8pt"
-                android:text="Magnetic Reactance:"/>
-            <EditText
-                android:id="@+id/defineXm"
+                android:id="@+id/defineX1_2"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:inputType="text"/>

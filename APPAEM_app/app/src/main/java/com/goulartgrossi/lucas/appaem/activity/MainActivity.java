@@ -17,6 +17,8 @@ import android.widget.Toast;
 
 import com.goulartgrossi.lucas.appaem.R;
 import com.goulartgrossi.lucas.appaem.fragment.AboutUsFragment;
+import com.goulartgrossi.lucas.appaem.fragment.CircuitFromCatalogFragment;
+import com.goulartgrossi.lucas.appaem.fragment.CircuitFromTestsFragment;
 import com.goulartgrossi.lucas.appaem.fragment.DefineEquivalentCircuitFragment;
 import com.goulartgrossi.lucas.appaem.fragment.FeedbackFragment;
 import com.goulartgrossi.lucas.appaem.fragment.IMAddFragment;
@@ -27,6 +29,8 @@ import com.goulartgrossi.lucas.appaem.fragment.SettingsFragment;
 import com.goulartgrossi.lucas.appaem.other.InductionMachineDao;
 import com.goulartgrossi.lucas.appaem.other.LayoutManager;
 
+import java.util.List;
+
 import appaem.ElectricalMachine;
 import appaem.Graph;
 import appaem.InductionMachine;
@@ -35,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     // tags used to attach the fragments
     public static String CURRENT_TAG = LayoutManager.TAG_IMLIST;
+    private Integer circuitType = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +88,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
+        List<Fragment> fragments = getSupportFragmentManager().getFragments();
+        if (fragments.size() > 1) {
+            Fragment fragment = fragments.get(getSupportFragmentManager().getFragments().size() - 2);
+            LayoutManager.setFABs(this, fragment.getTag(), fragment);
+        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
@@ -145,7 +155,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void defineEquivalentCircuit (View v){
+        Toast.makeText(this, circuitType, Toast.LENGTH_LONG).show();
+    }
+
+    public void getCircuitFromTests (View v){
+        LayoutManager.changeFragment(new CircuitFromTestsFragment(), LayoutManager.TAG_IM_DEC, MainActivity.this);
+        circuitType = 1;
+    }
+
+    public void getCircuitFromCatalog (View v){
+        LayoutManager.changeFragment(new CircuitFromCatalogFragment(), LayoutManager.TAG_IM_DEC, MainActivity.this);
+        circuitType = 2;
+    }
+
+    public void insertCircuits (View v){
         LayoutManager.changeFragment(new DefineEquivalentCircuitFragment(), LayoutManager.TAG_IM_DEC, MainActivity.this);
+        circuitType = 0;
     }
 
     public void createNewMachine(View view) {
