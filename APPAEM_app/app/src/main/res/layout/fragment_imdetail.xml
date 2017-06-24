@@ -205,15 +205,17 @@
             </LinearLayout>
         </LinearLayout>
 
+
         <TextView
-            android:id="@+id/statorLabel"
-            android:layout_width="fill_parent"
+            android:gravity="center"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Equivalent Circuit"
+            android:textColor="@android:color/black"
             android:layout_marginLeft="50px"
             android:layout_marginTop="35px"
-            android:textColor="@android:color/black"
-            android:textSize="8pt"
-            android:text="Stator Circuit" />
+            android:layout_marginBottom="10px"
+            android:textSize="8pt"/>
 
         <LinearLayout
             android:id="@+id/statorSection"
@@ -225,289 +227,303 @@
             android:layout_marginRight="30px"
             android:layout_marginTop="10px">
 
-            <LinearLayout
+            <Button
+                android:id="@+id/problem"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:background="@drawable/buttonshape"
+                android:drawableStart="@android:drawable/ic_menu_edit"
+                android:drawable
+                android:textColor="#FFFFFF"
+                android:textSize="15sp" />
+
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:textColor="@android:color/white"
+                android:backgroundTint="@color/colorPrimary"
+                android:layout_centerInParent="true"
+                android:onClick="defineEquivalentCircuit"
+                />
+
+            <TextView
+                android:id="@+id/statorLabel"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="10px"
-                android:layout_marginRight="20px"
-                android:layout_marginLeft="20px">
+                android:layout_marginLeft="50px"
+                android:layout_marginTop="35px"
+                android:textColor="@android:color/black"
+                android:textSize="8pt"
+                android:text="Stator Circuit" />
 
-                <TextView
-                    android:gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/black"
-                    android:textSize="8pt"
-                    android:layout_weight="1"
-                    android:text="Voltage" />
+            <LinearLayout
+                android:id="@+id/statorSection"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/border"
+                android:layout_marginLeft="30px"
+                android:layout_marginRight="30px"
+                android:layout_marginTop="10px">
 
-                <TextView
-                    android:gravity="center"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@android:color/black"
-                    android:textSize="8pt"
-                    android:layout_weight="1"
-                    android:text="Resistance" />
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10px"
+                    android:layout_marginRight="20px"
+                    android:layout_marginLeft="20px">
 
-                <TextView
-                    android:gravity="center"
-                    android:layout_width="wrap_content"
+                    <TextView
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:textSize="8pt"
+                        android:layout_weight="1"
+                        android:text="Voltage" />
+
+                    <TextView
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:textSize="8pt"
+                        android:layout_weight="1"
+                        android:text="Resistance" />
+
+                    <TextView
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:textSize="8pt"
+                        android:layout_weight="1"
+                        android:text="Reactance" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@android:color/black"
-                    android:textSize="8pt"
-                    android:layout_weight="1"
-                    android:text="Reactance" />
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10px"
+                    android:layout_marginRight="20px"
+                    android:layout_marginLeft="20px">
+
+                    <TextView
+                        android:id="@+id/IMDetailStatorVoltage"
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="8pt"
+                        android:layout_weight="0.269"/>
+
+                    <TextView
+                        android:id="@+id/IMDetailStatorResistance"
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="8pt"
+                        android:layout_weight="0.385"/>
+
+                    <TextView
+                        android:id="@+id/IMDetailStatorReactance"
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="8pt"
+                        android:layout_weight="0.346"/>
+                </LinearLayout>
             </LinearLayout>
-            <LinearLayout
+
+            <TextView
+                android:id="@+id/rotorLabel"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="10px"
-                android:layout_marginRight="20px"
-                android:layout_marginLeft="20px">
+                android:layout_marginLeft="50px"
+                android:layout_marginTop="35px"
+                android:textColor="@android:color/black"
+                android:textSize="8pt"
+                android:text="Rotor Circuit" />
 
-                <TextView
-                    android:id="@+id/IMDetailStatorVoltage"
-                    android:gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="8pt"
-                    android:layout_weight="0.269"/>
+            <LinearLayout
+                android:id="@+id/rotorSection"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/border"
+                android:layout_marginLeft="30px"
+                android:layout_marginRight="30px"
+                android:layout_marginTop="10px">
 
-                <TextView
-                    android:id="@+id/IMDetailStatorResistance"
-                    android:gravity="center"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="8pt"
-                    android:layout_weight="0.385"/>
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10px"
+                    android:layout_marginRight="20px"
+                    android:layout_marginLeft="20px">
 
-                <TextView
-                    android:id="@+id/IMDetailStatorReactance"
-                    android:gravity="center"
-                    android:layout_width="wrap_content"
+                    <TextView
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:textSize="8pt"
+                        android:layout_weight="1"
+                        android:text="Voltage" />
+
+                    <TextView
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:textSize="8pt"
+                        android:layout_weight="1"
+                        android:text="Resistance" />
+
+                    <TextView
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:textSize="8pt"
+                        android:layout_weight="1"
+                        android:text="Reactance" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="8pt"
-                    android:layout_weight="0.346"/>
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10px"
+                    android:layout_marginRight="20px"
+                    android:layout_marginLeft="20px">
+
+                    <TextView
+                        android:id="@+id/IMDetailRotorVoltage"
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="8pt"
+                        android:layout_weight="0.269"/>
+
+                    <TextView
+                        android:id="@+id/IMDetailRotorResistance"
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="8pt"
+                        android:layout_weight="0.385"/>
+
+                    <TextView
+                        android:id="@+id/IMDetailRotorReactance"
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="8pt"
+                        android:layout_weight="0.346"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/thLabel"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50px"
+                android:layout_marginTop="35px"
+                android:textColor="@android:color/black"
+                android:textSize="8pt"
+                android:text="Thévenin's Circuit" />
+
+            <LinearLayout
+                android:id="@+id/thSection"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/border"
+                android:layout_marginLeft="30px"
+                android:layout_marginRight="30px"
+                android:layout_marginTop="10px">
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10px"
+                    android:layout_marginRight="20px"
+                    android:layout_marginLeft="20px">
+
+                    <TextView
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:textSize="8pt"
+                        android:layout_weight="1"
+                        android:text="Voltage" />
+
+                    <TextView
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:textSize="8pt"
+                        android:layout_weight="1"
+                        android:text="Resistance" />
+
+                    <TextView
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:textSize="8pt"
+                        android:layout_weight="1"
+                        android:text="Reactance" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10px"
+                    android:layout_marginRight="20px"
+                    android:layout_marginLeft="20px">
+
+                    <TextView
+                        android:id="@+id/IMDetailThVoltage"
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="8pt"
+                        android:layout_weight="0.269"/>
+
+                    <TextView
+                        android:id="@+id/IMDetailThResistance"
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="8pt"
+                        android:layout_weight="0.385"/>
+
+                    <TextView
+                        android:id="@+id/IMDetailThReactance"
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="8pt"
+                        android:layout_weight="0.346"/>
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/rotorLabel"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="50px"
-            android:layout_marginTop="35px"
-            android:textColor="@android:color/black"
-            android:textSize="8pt"
-            android:text="Rotor Circuit" />
-
-        <LinearLayout
-            android:id="@+id/rotorSection"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/border"
-            android:layout_marginLeft="30px"
-            android:layout_marginRight="30px"
-            android:layout_marginTop="10px">
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="10px"
-                android:layout_marginRight="20px"
-                android:layout_marginLeft="20px">
-
-                <TextView
-                    android:gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/black"
-                    android:textSize="8pt"
-                    android:layout_weight="1"
-                    android:text="Voltage" />
-
-                <TextView
-                    android:gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/black"
-                    android:textSize="8pt"
-                    android:layout_weight="1"
-                    android:text="Resistance" />
-
-                <TextView
-                    android:gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/black"
-                    android:textSize="8pt"
-                    android:layout_weight="1"
-                    android:text="Reactance" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="10px"
-                android:layout_marginRight="20px"
-                android:layout_marginLeft="20px">
-
-                <TextView
-                    android:id="@+id/IMDetailRotorVoltage"
-                    android:gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="8pt"
-                    android:layout_weight="0.269"/>
-
-                <TextView
-                    android:id="@+id/IMDetailRotorResistance"
-                    android:gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="8pt"
-                    android:layout_weight="0.385"/>
-
-                <TextView
-                    android:id="@+id/IMDetailRotorReactance"
-                    android:gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="8pt"
-                    android:layout_weight="0.346"/>
-            </LinearLayout>
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/thLabel"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="50px"
-            android:layout_marginTop="35px"
-            android:textColor="@android:color/black"
-            android:textSize="8pt"
-            android:text="Thévenin's Circuit" />
-
-        <LinearLayout
-            android:id="@+id/thSection"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/border"
-            android:layout_marginLeft="30px"
-            android:layout_marginRight="30px"
-            android:layout_marginTop="10px">
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="10px"
-                android:layout_marginRight="20px"
-                android:layout_marginLeft="20px">
-
-                <TextView
-                    android:gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/black"
-                    android:textSize="8pt"
-                    android:layout_weight="1"
-                    android:text="Voltage" />
-
-                <TextView
-                    android:gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/black"
-                    android:textSize="8pt"
-                    android:layout_weight="1"
-                    android:text="Resistance" />
-
-                <TextView
-                    android:gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/black"
-                    android:textSize="8pt"
-                    android:layout_weight="1"
-                    android:text="Reactance" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="10px"
-                android:layout_marginRight="20px"
-                android:layout_marginLeft="20px">
-
-                <TextView
-                    android:id="@+id/IMDetailThVoltage"
-                    android:gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="8pt"
-                    android:layout_weight="0.269"/>
-
-                <TextView
-                    android:id="@+id/IMDetailThResistance"
-                    android:gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="8pt"
-                    android:layout_weight="0.385"/>
-
-                <TextView
-                    android:id="@+id/IMDetailThReactance"
-                    android:gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="8pt"
-                    android:layout_weight="0.346"/>
-            </LinearLayout>
-        </LinearLayout>
-
-        <TextView
-            android:gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="New Equivalent Circuit"
-            android:textColor="@android:color/black"
-            android:layout_marginLeft="50px"
-            android:layout_marginTop="35px"
-            android:textSize="8pt"/>
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="10px"
-            android:layout_marginRight="20px"
-            android:layout_marginLeft="20px">
-            <Spinner
-                android:id="@+id/circuitSpinner"
-                android:layout_width="fill_parent"
-                android:layout_weight="0.4"
-                android:layout_height="wrap_content"
-                android:background="@android:drawable/btn_dropdown"
-                android:entries="@array/circuitSpinnerItems"
-                style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
 
             <Button
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10pt"
                 android:layout_weight="0.6"
                 android:textColor="@android:color/white"
                 android:backgroundTint="@color/colorPrimary"
-                android:text="Define Circuit"
+                android:text="Plot Characteristic Curves"
                 android:layout_centerInParent="true"
                 android:onClick="defineEquivalentCircuit"
                 />
-        </LinearLayout>
     </LinearLayout>
 </ScrollView>

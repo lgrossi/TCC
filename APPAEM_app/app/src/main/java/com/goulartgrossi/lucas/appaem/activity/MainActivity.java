@@ -1,5 +1,6 @@
 package com.goulartgrossi.lucas.appaem.activity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -7,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -161,18 +163,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void defineEquivalentCircuit (View v){
-        switch (this.circuitType) {
-            default:
-            case 0:
-                LayoutManager.changeFragment(new DefineEquivalentCircuitFragment(), LayoutManager.TAG_IM_DEC, this);
-                break;
-            case 1:
-                LayoutManager.changeFragment(new CircuitFromTestsFragment(), LayoutManager.TAG_IM_DEC, this);
-                break;
-            case 2:
-                LayoutManager.changeFragment(new CircuitFromCatalogFragment(), LayoutManager.TAG_IM_DEC, this);
-                break;
-        }
+        CharSequence colors[] = new CharSequence[] {"Insert Circuit", "Get Circuit From Tests", "Get Circuit from Catalog Data"};
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Choose a method");
+        builder.setItems(colors, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                MainActivity.this.circuitType = which;
+                switch (which) {
+                    default:
+                    case 0:
+                        LayoutManager.changeFragment(new DefineEquivalentCircuitFragment(), LayoutManager.TAG_IM_DEC, MainActivity.this);
+                        break;
+                    case 1:
+                        LayoutManager.changeFragment(new CircuitFromTestsFragment(), LayoutManager.TAG_IM_DEC,  MainActivity.this);
+                        break;
+                    case 2:
+                        LayoutManager.changeFragment(new CircuitFromCatalogFragment(), LayoutManager.TAG_IM_DEC,  MainActivity.this);
+                        break;
+                }
+            }
+        });
+        builder.show();
     }
 
     public void setEquivalentCircuit (View v) {
@@ -283,9 +296,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public void setInductionMachine(InductionMachine machine) {
         this.inductionMachine = machine;
-    }
-
-    public void setCircuitType(Integer i) {
-        this.circuitType = i;
     }
 }
