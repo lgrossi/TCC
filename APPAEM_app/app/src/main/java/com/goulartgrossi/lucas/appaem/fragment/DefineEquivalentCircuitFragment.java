@@ -1,5 +1,6 @@
 package com.goulartgrossi.lucas.appaem.fragment;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -14,7 +15,8 @@ public class DefineEquivalentCircuitFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        getActivity().setRequestedOrientation(
+                ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
         View view = inflater.inflate(R.layout.fragment_define_equivalent_circuit, container, false);
 
         return view;

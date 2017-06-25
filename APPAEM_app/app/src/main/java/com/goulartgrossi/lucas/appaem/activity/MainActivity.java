@@ -1,6 +1,8 @@
 package com.goulartgrossi.lucas.appaem.activity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -21,12 +23,10 @@ import com.goulartgrossi.lucas.appaem.fragment.AboutUsFragment;
 import com.goulartgrossi.lucas.appaem.fragment.CircuitFromCatalogFragment;
 import com.goulartgrossi.lucas.appaem.fragment.CircuitFromTestsFragment;
 import com.goulartgrossi.lucas.appaem.fragment.DefineEquivalentCircuitFragment;
-import com.goulartgrossi.lucas.appaem.fragment.FeedbackFragment;
 import com.goulartgrossi.lucas.appaem.fragment.IMAddFragment;
 import com.goulartgrossi.lucas.appaem.fragment.IMCurvesFragment;
 import com.goulartgrossi.lucas.appaem.fragment.IMDetailFragment;
 import com.goulartgrossi.lucas.appaem.fragment.IMListFragment;
-import com.goulartgrossi.lucas.appaem.fragment.SettingsFragment;
 import com.goulartgrossi.lucas.appaem.other.InductionMachineDao;
 import com.goulartgrossi.lucas.appaem.other.LayoutManager;
 
@@ -65,16 +65,40 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LayoutManager.changeFragment(new FeedbackFragment(), LayoutManager.TAG_FEEDBACK, MainActivity.this);
-
+                MainActivity.this.sendFeedback();
             }
         });
 
-        fab = (FloatingActionButton) findViewById(R.id.fabGraphs);
+        fab = (FloatingActionButton) findViewById(R.id.fabChangeCurves);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LayoutManager.changeFragment(IMCurvesFragment.newInstance(((IMDetailFragment) getSupportFragmentManager().findFragmentByTag(LayoutManager.TAG_IMDETAIL)).getInductionMachine()), LayoutManager.TAG_IMCURVES, MainActivity.this);
+                CharSequence colors[] = new CharSequence[] {"Torque x Speed Profiling", "Power Factor x Speed Profiling", "Stator Current x Speed Profiling", "Efficiency x Speed Profiling"};
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Choose Characteristic Curve");
+                builder.setItems(colors, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        MainActivity.this.circuitType = which;
+                        switch (which) {
+                            default:
+                            case 0:
+                                ((IMCurvesFragment) getSupportFragmentManager().findFragmentByTag(LayoutManager.TAG_IMCURVES)).drawGraph(Graph.GraphType.TorqueSpeedProfiling);
+                                break;
+                            case 1:
+                                ((IMCurvesFragment) getSupportFragmentManager().findFragmentByTag(LayoutManager.TAG_IMCURVES)).drawGraph(Graph.GraphType.PowerFactorSpeedProfiling);
+                                break;
+                            case 2:
+                                ((IMCurvesFragment) getSupportFragmentManager().findFragmentByTag(LayoutManager.TAG_IMCURVES)).drawGraph(Graph.GraphType.StatorCurrentSpeedProfiling);
+                                break;
+                            case 3:
+                                ((IMCurvesFragment) getSupportFragmentManager().findFragmentByTag(LayoutManager.TAG_IMCURVES)).drawGraph(Graph.GraphType.EfficiencySpeedProfiling);
+                                break;
+                        }
+                    }
+                });
+                builder.show();
             }
         });
 
@@ -132,11 +156,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             fragment = new AboutUsFragment();
             CURRENT_TAG = LayoutManager.TAG_ABOUT;
         } else if (id == R.id.nav_app_feedback) {
-            fragment = new FeedbackFragment();
-            CURRENT_TAG = LayoutManager.TAG_FEEDBACK;
-        } else if (id == R.id.nav_app_settings) {
+            return this.sendFeedback();
+        /*} else if (id == R.id.nav_app_settings) {
             fragment = new SettingsFragment();
-            CURRENT_TAG = LayoutManager.TAG_SETTINGS;
+            CURRENT_TAG = LayoutManager.TAG_SETTINGS;*/
         } else {
                 fragment = new IMListFragment();
             CURRENT_TAG = LayoutManager.TAG_IMLIST;
@@ -144,22 +167,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         LayoutManager.changeFragment(fragment, CURRENT_TAG, this);
         return true;
-    }
-
-    public void setToTorqueSpeedProfilingGraph (View v){
-        ((IMCurvesFragment) getSupportFragmentManager().findFragmentByTag(LayoutManager.TAG_IMCURVES)).drawGraph(Graph.GraphType.TorqueSpeedProfiling);
-    }
-
-    public void setToPowerFactorSpeedProfilingGraph (View v){
-        ((IMCurvesFragment) getSupportFragmentManager().findFragmentByTag(LayoutManager.TAG_IMCURVES)).drawGraph(Graph.GraphType.PowerFactorSpeedProfiling);
-    }
-
-    public void setToStatorCurrentSpeedProfilingGraph (View v){
-        ((IMCurvesFragment) getSupportFragmentManager().findFragmentByTag(LayoutManager.TAG_IMCURVES)).drawGraph(Graph.GraphType.StatorCurrentSpeedProfiling);
-    }
-
-    public void setToEfficiencySpeedProfilingGraph (View v){
-        ((IMCurvesFragment) getSupportFragmentManager().findFragmentByTag(LayoutManager.TAG_IMCURVES)).drawGraph(Graph.GraphType.EfficiencySpeedProfiling);
     }
 
     public void defineEquivalentCircuit (View v){
@@ -186,6 +193,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
         builder.show();
+    }
+
+    public void plotCurves (View v){
+        LayoutManager.changeFragment(IMCurvesFragment.newInstance(((IMDetailFragment) getSupportFragmentManager().findFragmentByTag(LayoutManager.TAG_IMDETAIL)).getInductionMachine()), LayoutManager.TAG_IMCURVES, MainActivity.this);
+    }
+
+    private Boolean sendFeedback (){
+        Intent intent = new Intent(Intent.ACTION_SENDTO); // it's not ACTION_SEND
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_SUBJECT, "AppAEM User Feedback");
+        intent.putExtra(Intent.EXTRA_TEXT, "");
+        intent.setData(Uri.parse("mailto:lucas.ggrossi@gmail.com")); // or just "mailto:" for blank
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // this will make such that when user returns to your app, your app is displayed, instead of the email app.
+        startActivity(intent);
+        return true;
     }
 
     public void setEquivalentCircuit (View v) {

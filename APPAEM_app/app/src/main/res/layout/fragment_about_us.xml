@@ -7,18 +7,42 @@
     android:layout_margin="30px"
     tools:context="com.goulartgrossi.lucas.appaem.fragment.AboutUsFragment">
 
-    <ScrollView
-        android:id="@+id/ScrollView01"
-        android:layout_margin="30px"
+    <TextView
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="AppAEM 1.0.0"
+        android:textSize="10pt"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="a"
-            />
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Author: Lucas Goulart Grossi"
+        android:textSize="8pt"
+        android:textColor="@android:color/black"
+        />
 
-    </ScrollView>
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Co-Author: Sidelmo Magalhães Filho"
+        android:textSize="8pt"
+        android:textColor="@android:color/black"
+        />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Universidade Federal de Minas Gerais - UFMG"
+        android:textStyle="bold"
+        android:textSize="8pt"
+        android:textColor="@android:color/black"
+        />
 
 </LinearLayout>

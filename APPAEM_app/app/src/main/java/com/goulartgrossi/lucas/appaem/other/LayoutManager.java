@@ -50,21 +50,19 @@ public class LayoutManager {
         if (tag == TAG_IMLIST) {
             setFABVisibility(View.VISIBLE, activity, R.id.fabAdd);
             setFABVisibility(View.INVISIBLE, activity, R.id.fabFeedback);
-            setFABVisibility(View.INVISIBLE, activity, R.id.fabGraphs);
+            setFABVisibility(View.INVISIBLE, activity, R.id.fabChangeCurves);
         } else if (tag == TAG_ABOUT) {
             setFABVisibility(View.INVISIBLE, activity, R.id.fabAdd);
             setFABVisibility(View.VISIBLE, activity, R.id.fabFeedback);
-            setFABVisibility(View.INVISIBLE, activity, R.id.fabGraphs);
-        } else if (tag == TAG_IMDETAIL) {
-            if (((IMDetailFragment) fragment).getInductionMachine().getStator() != null) {
-                setFABVisibility(View.VISIBLE, activity, R.id.fabGraphs);
-            }
+            setFABVisibility(View.INVISIBLE, activity, R.id.fabChangeCurves);
+        } else if (tag == TAG_IMCURVES) {
             setFABVisibility(View.INVISIBLE, activity, R.id.fabAdd);
             setFABVisibility(View.INVISIBLE, activity, R.id.fabFeedback);
+            setFABVisibility(View.VISIBLE, activity, R.id.fabChangeCurves);
         } else {
             setFABVisibility(View.INVISIBLE, activity, R.id.fabAdd);
             setFABVisibility(View.INVISIBLE, activity, R.id.fabFeedback);
-            setFABVisibility(View.INVISIBLE, activity, R.id.fabGraphs);
+            setFABVisibility(View.INVISIBLE, activity, R.id.fabChangeCurves);
         }
     }
 

@@ -1,5 +1,6 @@
 package com.goulartgrossi.lucas.appaem.fragment;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -27,6 +28,9 @@ public class IMDetailFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_imdetail, container, false);
 
+        getActivity().setRequestedOrientation(
+                ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+
         TextView textView = (TextView) view.findViewById(R.id.IMDetailName);
         textView.setText(this.inductionMachine.getName());
         textView = (TextView) view.findViewById(R.id.IMDetailManufacturer);
@@ -44,12 +48,8 @@ public class IMDetailFragment extends Fragment {
         textView.setText(generateLabelText(xM == 0.0 ? null : xM, "Ω"));
 
         if (this.inductionMachine.getStator() == null) {
-            view.findViewById(R.id.statorLabel).setVisibility(View.GONE);
-            view.findViewById(R.id.statorSection).setVisibility(View.GONE);
-            view.findViewById(R.id.rotorLabel).setVisibility(View.GONE);
-            view.findViewById(R.id.rotorSection).setVisibility(View.GONE);
-            view.findViewById(R.id.thLabel).setVisibility(View.GONE);
-            view.findViewById(R.id.thSection).setVisibility(View.GONE);
+            view.findViewById(R.id.equivalentCircuitSection).setVisibility(View.GONE);
+            view.findViewById(R.id.plotGraphBtn).setVisibility(View.GONE);
         } else {
             textView = (TextView) view.findViewById(R.id.IMDetailStatorVoltage);
             textView.setText(generateLabelText(this.inductionMachine.getStator().getVoltage(), "V"));

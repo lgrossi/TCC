@@ -113,7 +113,7 @@
                 android:layout_marginLeft="30px"
                 android:layout_marginBottom="30px"
                 android:textSize="8pt"
-                android:text="Olá, essa é a descrição feita para testar o layour de detalhe de máquinas de indução." />
+                android:text="Olá, essa é a descrição feita para testar o layout de detalhe de máquinas de indução." />
 
         </LinearLayout>
 
@@ -206,53 +206,49 @@
         </LinearLayout>
 
 
-        <TextView
-            android:gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Equivalent Circuit"
-            android:textColor="@android:color/black"
-            android:layout_marginLeft="50px"
-            android:layout_marginTop="35px"
-            android:layout_marginBottom="10px"
-            android:textSize="8pt"/>
 
         <LinearLayout
-            android:id="@+id/statorSection"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="50px"
+            android:layout_marginTop="35px">
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:text="Equivalent Circuit"
+                android:textColor="@android:color/black"
+                android:textSize="8pt"/>
+
+            <Button
+                android:id="@+id/problem"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:background="@drawable/buttonshape"
+                android:drawableStart="@android:drawable/ic_menu_edit"
+                android:scaleX="0.6"
+                android:scaleY="0.6"
+                android:paddingLeft="4pt"
+                android:onClick="defineEquivalentCircuit"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/equivalentCircuitSection"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:background="@drawable/border"
             android:layout_marginLeft="30px"
-            android:layout_marginRight="30px"
-            android:layout_marginTop="10px">
-
-            <Button
-                android:id="@+id/problem"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_gravity="center"
-                android:background="@drawable/buttonshape"
-                android:drawableStart="@android:drawable/ic_menu_edit"
-                android:drawable
-                android:textColor="#FFFFFF"
-                android:textSize="15sp" />
-
-            <Button
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:textColor="@android:color/white"
-                android:backgroundTint="@color/colorPrimary"
-                android:layout_centerInParent="true"
-                android:onClick="defineEquivalentCircuit"
-                />
+            android:layout_marginRight="30px">
 
             <TextView
                 android:id="@+id/statorLabel"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="50px"
-                android:layout_marginTop="35px"
+                android:gravity="center"
+                android:layout_marginTop="10px"
                 android:textColor="@android:color/black"
                 android:textSize="8pt"
                 android:text="Stator Circuit" />
@@ -262,18 +258,14 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="@drawable/border"
-                android:layout_marginLeft="30px"
-                android:layout_marginRight="30px"
-                android:layout_marginTop="10px">
+                android:layout_marginLeft="10px"
+                android:layout_marginRight="10px">
 
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginTop="10px"
-                    android:layout_marginRight="20px"
-                    android:layout_marginLeft="20px">
+                    android:layout_marginTop="10px">
 
                     <TextView
                         android:gravity="center"
@@ -306,9 +298,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginBottom="10px"
-                    android:layout_marginRight="20px"
-                    android:layout_marginLeft="20px">
+                    android:layout_marginBottom="10px">
 
                     <TextView
                         android:id="@+id/IMDetailStatorVoltage"
@@ -340,8 +330,8 @@
                 android:id="@+id/rotorLabel"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="50px"
-                android:layout_marginTop="35px"
+                android:gravity="center"
+                android:layout_marginTop="60px"
                 android:textColor="@android:color/black"
                 android:textSize="8pt"
                 android:text="Rotor Circuit" />
@@ -351,18 +341,14 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="@drawable/border"
-                android:layout_marginLeft="30px"
-                android:layout_marginRight="30px"
-                android:layout_marginTop="10px">
+                android:layout_marginLeft="10px"
+                android:layout_marginRight="10px">
 
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginTop="10px"
-                    android:layout_marginRight="20px"
-                    android:layout_marginLeft="20px">
+                    android:layout_marginTop="10px">
 
                     <TextView
                         android:gravity="center"
@@ -395,9 +381,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginBottom="10px"
-                    android:layout_marginRight="20px"
-                    android:layout_marginLeft="20px">
+                    android:layout_marginBottom="10px">
 
                     <TextView
                         android:id="@+id/IMDetailRotorVoltage"
@@ -429,8 +413,8 @@
                 android:id="@+id/thLabel"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="50px"
-                android:layout_marginTop="35px"
+                android:gravity="center"
+                android:layout_marginTop="60px"
                 android:textColor="@android:color/black"
                 android:textSize="8pt"
                 android:text="Thévenin's Circuit" />
@@ -440,18 +424,15 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="@drawable/border"
-                android:layout_marginLeft="30px"
-                android:layout_marginRight="30px"
-                android:layout_marginTop="10px">
+                android:layout_marginLeft="10px"
+                android:layout_marginRight="10px"
+                android:layout_marginBottom="20px">
 
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginTop="10px"
-                    android:layout_marginRight="20px"
-                    android:layout_marginLeft="20px">
+                    android:layout_marginTop="10px">
 
                     <TextView
                         android:gravity="center"
@@ -484,9 +465,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginBottom="10px"
-                    android:layout_marginRight="20px"
-                    android:layout_marginLeft="20px">
+                    android:layout_marginBottom="10px">
 
                     <TextView
                         android:id="@+id/IMDetailThVoltage"
@@ -516,6 +495,7 @@
         </LinearLayout>
 
             <Button
+                android:id="@+id/plotGraphBtn"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.6"
@@ -523,7 +503,7 @@
                 android:backgroundTint="@color/colorPrimary"
                 android:text="Plot Characteristic Curves"
                 android:layout_centerInParent="true"
-                android:onClick="defineEquivalentCircuit"
+                android:onClick="plotCurves"
                 />
     </LinearLayout>
 </ScrollView>

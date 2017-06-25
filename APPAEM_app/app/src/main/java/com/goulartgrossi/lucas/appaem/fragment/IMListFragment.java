@@ -1,16 +1,15 @@
 package com.goulartgrossi.lucas.appaem.fragment;
 
+import android.app.Activity;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.Toast;
 
 import com.goulartgrossi.lucas.appaem.R;
 import com.goulartgrossi.lucas.appaem.activity.MainActivity;
@@ -30,6 +29,8 @@ public class IMListFragment extends ListFragment implements OnItemClickListener 
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_imlist, container, false);
+        getActivity().setRequestedOrientation(
+                ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
         return view;
     }
 
@@ -56,8 +57,6 @@ public class IMListFragment extends ListFragment implements OnItemClickListener 
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Toast.makeText(getActivity(), imList.get(position).getName() + " Clicked!", Toast.LENGTH_SHORT).show();
-
         ((MainActivity) this.getActivity()).setInductionMachine(this.imList.get(position));
         LayoutManager.changeFragment(IMDetailFragment.newInstance(imList.get(position)), LayoutManager.TAG_IMDETAIL, getActivity());
     }

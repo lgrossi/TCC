@@ -1,5 +1,7 @@
 package com.goulartgrossi.lucas.appaem.fragment;
 
+import android.app.Activity;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -45,6 +47,8 @@ public class IMCurvesFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_imcurves, container, false);
         finalX = new InductionMachineManager(inductionMachine).calculateSynchronousSpeed();
+        getActivity().setRequestedOrientation(
+                ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         return view;
     }
@@ -59,7 +63,7 @@ public class IMCurvesFragment extends Fragment {
         this.inductionMachine = inductionMachine;
     }
 
-    public void drawGraph (Graph.GraphType type) { drawGraph(type, null); };
+    public void drawGraph (Graph.GraphType type) { drawGraph(type, null); }
 
     public void drawGraph (Graph.GraphType type, InductionMachine machine) {
         GraphView graph = (GraphView) getView().findViewById(R.id.graph);
@@ -110,7 +114,7 @@ public class IMCurvesFragment extends Fragment {
         }
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dataPointArrayList.toArray(new DataPoint[]{}));
 
-        series.setOnDataPointTapListener(new OnDataPointTapListener() {
+        /*series.setOnDataPointTapListener(new OnDataPointTapListener() {
             @Override
             public void onTap(Series series, DataPointInterface dataPoint) {
                 IMCurvesFragment.this.drawGraph(IMCurvesFragment.this.currentGraph,
@@ -125,7 +129,7 @@ public class IMCurvesFragment extends Fragment {
                 // return false so that the base onTouch event (pan, zoom) can still execute.
                 return false;
             }
-        });
+        });*/
 
         if (machine == null) { maxY = series.getHighestValueY(); }
 
