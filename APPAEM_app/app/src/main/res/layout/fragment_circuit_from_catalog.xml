@@ -42,7 +42,7 @@ android:scrollbarSize="4dp">
                 android:id="@+id/definePF"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:inputType="text"/>
+                android:inputType="number"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -54,7 +54,7 @@ android:scrollbarSize="4dp">
                 android:id="@+id/defineIn"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:inputType="text"/>
+                android:inputType="number"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -66,7 +66,7 @@ android:scrollbarSize="4dp">
                 android:id="@+id/defineWs"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:inputType="text"/>
+                android:inputType="number"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -78,7 +78,7 @@ android:scrollbarSize="4dp">
                 android:id="@+id/defineTn"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:inputType="text"/>
+                android:inputType="number"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -90,7 +90,7 @@ android:scrollbarSize="4dp">
                 android:id="@+id/defineSn"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:inputType="text"/>
+                android:inputType="number"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -102,7 +102,7 @@ android:scrollbarSize="4dp">
                 android:id="@+id/defineV1_2"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:inputType="text"/>
+                android:inputType="number"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -114,7 +114,7 @@ android:scrollbarSize="4dp">
                 android:id="@+id/defineTmax"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:inputType="text"/>
+                android:inputType="number"/>
         </LinearLayout>
 
         <Button

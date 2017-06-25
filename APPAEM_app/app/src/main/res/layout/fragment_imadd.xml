@@ -92,7 +92,7 @@
             android:id="@+id/addNpoles"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:inputType="text"/>
+            android:inputType="number"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -104,7 +104,7 @@
             android:id="@+id/addFrequency"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:inputType="text"/>
+            android:inputType="number"/>
 
         <Button
             android:layout_width="fill_parent"
